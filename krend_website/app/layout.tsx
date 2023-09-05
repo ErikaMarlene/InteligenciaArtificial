@@ -1,7 +1,7 @@
 import { Footer, Hero, Navbar } from "@/components";
 import "./globals.css";
 import Head from "next/head";
-import Home from './page';
+import Home from './Comprar/page';
 import App from ".";
 
 export const metadata = {
@@ -27,7 +27,6 @@ export default function RootLayout({
       </Head>
       <body className="relative">
         <Navbar />
-          {mostrarCompra ? <Home /> : <Hero mostrarOcultarHome={mostrarOcultarHome}/>}
         {children}
         <Footer />
       </body>

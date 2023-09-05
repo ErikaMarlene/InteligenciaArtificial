@@ -3,9 +3,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "./CustomButton";
-import Home from "../app/page";
+import Home from "../app/Comprar/page";
 
-const Hero = ({mostrarOcultarHome}) => {
+const Hero = () => {
   const handleScroll = () => {
   };
   return (
@@ -51,7 +51,7 @@ const Hero = ({mostrarOcultarHome}) => {
             <CustomButton
               title="Busca aquí"
               containerStyles="bg-violeta text-white rounded-full mt-10"
-              handleClick={mostrarOcultarHome}
+              handleClick={handleScroll}
             />
           </div>
         </div>
