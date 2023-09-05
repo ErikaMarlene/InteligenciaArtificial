@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "./CustomButton";
-import Home from "../app/page";
+import Home from "../app/comprar/page";
 
 const Hero = ({mostrarOcultarHome}) => {
   const handleScroll = () => {

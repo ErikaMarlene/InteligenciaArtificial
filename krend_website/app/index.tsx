@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RootLayout from './layout'; 
-import Home from './page';
+import Home from './comprar/page';
 import Hero from '../components/Hero';
 
 function App() {

@@ -7,7 +7,7 @@ import CustomFilter from './CustomFilter';
 import HouseCard from './HouseCard';
 import HouseDetails from './HouseDetails';
 import ShowMore from './ShowMore';
-import Home from '@/app/page';
+import Home from '@/app/comprar/page';
 export{
     Hero,
     CustomButton,
