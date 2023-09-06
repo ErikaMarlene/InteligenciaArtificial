@@ -1,4 +1,3 @@
-import Link from "@bradgarropy/next-link"
 
 // Delete from here
 export const manufacturers = [
@@ -77,15 +76,15 @@ export const manufacturers = [
     {
       title: "Acerca",
       links: [
-        { title: "Acerca de nosotros", url: "/" },
-        { title: "Colabora con nosotros", url: "/About" },
+        { title: "Acerca de nosotros", url: "/About" },
+        { title: "Colabora con nosotros", url: "/Partnership" },
       ],
     },
     {
       title: "Redes Sociales",
       links: [
-        { title: "Instagram", url: "/" },
-        { title: "Twitter", url: "/" },
+        { title: "Instagram", url: "https://www.instagram.com/" },
+        { title: "Twitter", url: "https://twitter.com/?lang=es" },
       ],
     },
   ];
