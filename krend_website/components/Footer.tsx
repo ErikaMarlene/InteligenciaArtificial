@@ -9,7 +9,6 @@ function Footer() {
       <div className="flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 pt-4">
         <div className="flex flex-col justify-start items-start gap-6">
             <Image 
-            // CAMBIAR EL LOGO
             src="/krend.svg"
             alt="Krend Logo"
             // pixels
@@ -17,10 +16,6 @@ function Footer() {
             height={18}
             className="object-contain"
             />
-            <p className="text-base text-gray-700">
-                Krend 2023<br/>
-                Todos los derechos reservados &copy;
-            </p>
         </div>
 
         <div className="footer__links">
@@ -42,7 +37,7 @@ function Footer() {
         </div>
         </div>
         <div className="flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10">
-            <p>@2023 Krend. Todos los derechos reservados.</p>
+            <p>@2023 Krend. Todos los derechos reservados &copy;.</p>
             <div className="footer__copyrights-link">
                 <Link href="/mi-ruta-about" className="text-gray-500">
                     Políticas de Privacidad
