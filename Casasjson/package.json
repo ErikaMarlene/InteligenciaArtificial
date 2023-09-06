@@ -1,0 +1,16 @@
+
+{
+  "name": "casasjson",
+  "version": "1.0.0",
+  "description": "Instalar: sudo npm install -g npm@10.0.0  Crear servidor: sudo npm i json-server -D   Inicializar: sudo npm run servicio",
+  "main": "index.js",
+  "scripts": {
+    "servicio": "json-server --port 8081 --watch casas.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.17.3"
+  }
+}
