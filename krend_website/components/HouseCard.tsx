@@ -32,7 +32,7 @@ const HouseCard = ({car}:CarCardProps) => {
             </span>
         </p>
         <div className='relative w-full h-40 my-3 object-contain'>
-            <Image src={generateCarImageUrl(car)} alt="house model" fill priority className='object-contain'/>
+            <Image src="/big_house.png" alt="house model" fill priority className='object-contain'/>
         </div>
         <div className='relative flex w-full mt-2'>
             {/* CAMBIAR */}

@@ -53,12 +53,12 @@ export default function Home() {
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden pt-[50px]">
 
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Catálogo de Casas</h1>
-          <p>Explora las casas que pueden ser de tu interés.</p>
+          <p className="hero__subtitle">Explora las casas que pueden ser de tu interés.</p>
         </div>
 
         <div className="home__filters">
