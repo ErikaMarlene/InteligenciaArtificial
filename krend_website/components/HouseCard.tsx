@@ -10,82 +10,11 @@ interface HouseCardProps {
 }
 const HouseCard = ({ house }: HouseCardProps) => {
   const {
-    MSSubClass,
-    MSZoning,
-    LotFrontage,
     LotArea,
-    Street,
-    Alley,
-    LotShape,
-    LandContour,
-    Utilities,
-    LotConfig,
-    LandSlope,
     Neighborhood,
-    Condition1,
-    Condition2,
-    BldgType,
-    HouseStyle,
-    OverallQual,
-    OverallCond,
-    YearBuilt,
-    YearRemodAdd,
-    RoofStyle,
-    RoofMatl,
-    Exterior1st,
-    Exterior2nd,
-    MasVnrType,
-    MasVnrArea,
-    ExterQual,
-    ExterCond,
-    Foundation,
-    BsmtQual,
-    BsmtCond,
-    BsmtExposure,
-    BsmtFinType1,
-    BsmtFinSF1,
-    BsmtFinType2,
-    BsmtFinSF2,
-    BsmtUnfSF,
-    TotalBsmtSF,
-    Heating,
-    HeatingQC,
-    CentralAir,
-    Electrical,
-    LowQualFinSF,
-    GrLivArea,
-    BsmtFullBath,
-    BsmtHalfBath,
     FullBath,
-    HalfBath,
     BedroomAbvGr,
-    KitchenAbvGr,
-    KitchenQual,
-    TotRmsAbvGrd,
-    Functional,
-    Fireplaces,
-    FireplaceQu,
-    GarageType,
-    GarageYrBlt,
-    GarageFinish,
     GarageCars,
-    GarageArea,
-    GarageQual,
-    GarageCond,
-    PavedDrive,
-    WoodDeckSF,
-    OpenPorchSF,
-    EnclosedPorch,
-    ScreenPorch,
-    PoolArea,
-    PoolQC,
-    Fence,
-    MiscFeature,
-    MiscVal,
-    MoSold,
-    YrSold,
-    SaleType,
-    SaleCondition,
     SalePrice,
   } = house;
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +22,6 @@ const HouseCard = ({ house }: HouseCardProps) => {
     <div className="car-card group">
       <div className="car-card__content">
         <h2 className="car-card__content-title">
-          {/* Esto muestra el nombre de la casa */}
           {Neighborhood}
         </h2>
         <h2 className="car-card__content-subtitle">{LotArea} ft&sup2;</h2>
@@ -116,19 +44,12 @@ const HouseCard = ({ house }: HouseCardProps) => {
         {/* CAMBIAR */}
         <div className="flex group-hover:invisible w-full justify-between text-gray">
           <div className="flex flex-col justify-center items-center gap-2">
-            <Image
-              src="/bedroom.svg"
-              width={30}
-              height={30}
-              alt="bedroom"
-            />
+            <Image src="/bedroom.svg" width={30} height={30} alt="bedroom" />
             <p className="text-[14px]">{BedroomAbvGr} Cuartos</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/garage.svg" width={30} height={20} alt="garage" />
-            <p className="text-[14px] text-center">
-            {GarageCars} Carros
-            </p>
+            <p className="text-[14px] text-center">{GarageCars} Carros</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/bathroom.svg" width={35} height={40} alt="bathroom" />
@@ -145,7 +66,11 @@ const HouseCard = ({ house }: HouseCardProps) => {
           />
         </div>
       </div>
-      <HouseDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} house={house}/>
+      <HouseDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        house={house}
+      />
     </div>
   );
 };

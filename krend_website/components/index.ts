@@ -10,6 +10,7 @@ import HouseDetails from './HouseDetails';
 import ShowMore from './ShowMore';
 import Home from '@/app/Comprar/page';
 import CarCard from './CarCard';
+import LoadingSpinner from './LoadingSpinner';
 export{
     Hero,
     CustomButton,
@@ -22,5 +23,6 @@ export{
     ShowMore,
     Home,
     CarCard,
-    HouseDetails
+    HouseDetails,
+    LoadingSpinner
 }

@@ -4,6 +4,7 @@ import {
   HouseCard,
   SearchBar,
   ShowMore,
+  LoadingSpinner,
 } from "@/components";
 import { Street } from "@/constants";
 import { fetchHouses } from "@/utils";
@@ -67,41 +68,33 @@ export default function Home() {
             /> */}
           </div>
         </div>
-
-        {allHouses.length > 0 ? (
-          <section>
-            <div className="home__cars-wrapper">
-              {allHouses?.map((house) => (
-                <HouseCard house={house} />
-              ))}
-            </div>
-
-            {loading && (
-              <div className="mt-16 w-full flex-center">
-                <Image
-                  src="/loader.svg"
-                  alt="loader"
-                  width={50}
-                  height={50}
-                  className="object-contain"
-                />
-              </div>
-            )}
-
-            <ShowMore
-              pageNumber={limit / 10}
-              isNext={limit > allHouses.length}
-              setLimit={setLimit}
-            />
-          </section>
+        {loading ? (
+          <div className="mt-16 w-full flex-center">
+            <LoadingSpinner />
+          </div>
         ) : (
+          <section>
+          <div className="home__cars-wrapper">
+            {allHouses?.map((house) => (
+              <HouseCard house={house} />
+            ))}
+          </div>
+          </section> 
+        )}
+        
+        {isDataEmpty && (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">
-              Oops, no hay resultados
+              {/* Oops, no hay resultados */}
             </h2>
             <p>{allHouses?.message}</p>
           </div>
-        )}
+        )}  
+        <ShowMore
+        pageNumber={limit / 10}
+        isNext={limit > allHouses.length}
+        setLimit={setLimit}
+      />
       </div>
     </main>
   );

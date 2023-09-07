@@ -21,7 +21,6 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 export async function fetchCars(filters: FilterProps) {
     const { manufacturer, year, model, limit, fuel } = filters;
     const headers = {
-      // 6d44315b21msh7890bc5972d2153p116bbbjsn1abbdb5329de
         'X-RapidAPI-Key': '6d44315b21msh7890bc5972d2153p116bbbjsn1abbdb5329de',
 		'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
     };
@@ -38,19 +37,16 @@ export async function fetchCars(filters: FilterProps) {
   return result;
 }
 
-export async function fetchHouses(filters: PropsFiltros) {
-  const { street, limit } = filters;
+export async function fetchHouses(filtros: PropsFiltros) {
+  const { street, limit } = filtros;
   
   // URL de tu API local
   const apiUrl = `http://localhost:8081/casas?&limit=${limit}`;
   
-  // Opciones de la solicitud
   const headers = {
       'Content-Type': 'application/json',
-      // Puedes agregar más encabezados si es necesario
   };
 
-  // Realiza la solicitud a tu API local
   const response = await fetch(apiUrl, {
       headers: headers,
   });
