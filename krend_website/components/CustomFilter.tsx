@@ -9,8 +9,6 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
 
   const [selected, setSelected] = useState(options[0]);
 
-
-
   return (
     <div className="w-fit">
       <Listbox

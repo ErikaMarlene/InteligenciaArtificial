@@ -5,9 +5,11 @@ import Footer from './Footer';
 import SearchBar from './SearchBar';
 import CustomFilter from './CustomFilter';
 import HouseCard from './HouseCard';
+import CarDetails from './CarDetails';
 import HouseDetails from './HouseDetails';
 import ShowMore from './ShowMore';
 import Home from '@/app/Comprar/page';
+import CarCard from './CarCard';
 export{
     Hero,
     CustomButton,
@@ -16,7 +18,9 @@ export{
     SearchBar,
     CustomFilter,
     HouseCard,
-    HouseDetails,
+    CarDetails,
     ShowMore,
-    Home
+    Home,
+    CarCard,
+    HouseDetails
 }

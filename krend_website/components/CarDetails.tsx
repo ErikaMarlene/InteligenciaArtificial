@@ -1,16 +1,17 @@
 "use client";
-import { HouseProps } from "@/types";
+import { CarProps } from "@/types";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 interface HouseDetailsProps {
   isOpen: boolean;
+  // CAMBIAR
   closeModal: () => void;
-  house: HouseProps;
+  car: CarProps;
 }
 
-const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
+const CarDetails = ({ isOpen, closeModal, car }: HouseDetailsProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -66,10 +67,10 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
                   {/* CAMBIAR PARA DESCRIBIR LA CASA */}
                   <div className="flex-1 flex flex-col gap-2">
                     <h2 className="font-semibold text-xl capitalize">
-                        {house.Neighborhood} {house.LotArea}
+                        {car.make} {car.model}
                     </h2>
                     <div className="mt-3 flex flex-wrap gap-4">
-                        {Object.entries(house).map(([key, value]) => (
+                        {Object.entries(car).map(([key, value]) => (
                             <div className="flex justify-between gap-5 w-full text-right" key={key}>
                                 <h4 className="text-grey capitalize">{key.split("_").join(" ")}</h4>
                                 <p className="text-black-100 font-semibold">{value}</p>
@@ -87,4 +88,4 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
   );
 };
 
-export default HouseDetails;
+export default CarDetails;

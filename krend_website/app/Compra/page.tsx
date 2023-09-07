@@ -1,45 +1,37 @@
 "use client";
 import {
   CustomFilter,
-  CarCard,
+  HouseCard,
   SearchBar,
   ShowMore,
 } from "@/components";
-import { fuels, yearsOfProduction } from "@/constants";
-import { HomeProps } from "@/types";
-import { fetchCars } from "@/utils";
-import { title } from "process";
-import { use, useEffect, useState } from "react";
+import { Street } from "@/constants";
+import { fetchHouses } from "@/utils";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 // Podemos pasarle {parámetros}
 export default function Home() {
-  const [allCars, setAllCars] = useState([]);
+  const [allHouses, setAllHouses] = useState([]);
   const [loading, setLoading] = useState(false);
 
   //search states
-  const [manufacturer, setManufacturer] = useState("");
-  const [model, setModel] = useState("");
+  
 
   //filter states
-  const [fuel, setFuel] = useState("");
-  const [year, setYear] = useState(2022);
-
+  const [street, setStreet] = useState("");
 
   //pagination state
   const [limit, setLimit] = useState(10);
 
-  const getCars = async () => {
+  const getHouses = async () => {
     setLoading(true);
     try {
-      const result = await fetchCars({
-        manufacturer: manufacturer || "",
-        year: year || 2022,
-        fuel: fuel || "",
+      const result = await fetchHouses({
+        street: street || "",
         limit: limit || 10,
-        model: model || "",
       });
-      setAllCars(result);
+      setAllHouses(result);
     } catch (error) {
       console.log(error);
     } finally {
@@ -47,10 +39,10 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    getCars();
-  }, [fuel, year, limit, manufacturer, model]);
+    getHouses();
+  }, [street, limit]);
 
-  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+  const isDataEmpty = !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
 
   return (
     <main className="overflow-hidden pt-[50px]">
@@ -62,26 +54,25 @@ export default function Home() {
         </div>
 
         <div className="home__filters">
-          <SearchBar setManufacturer={setManufacturer} setModel={setModel} />
+          {/* <SearchBar setManufacturer={setManufacturer} setModel={setModel} /> */}
 
           <div className="home__filter-container">
             <p className="text-xl font-semibold">Ordenar por:</p>
             {/* CAMBIAR TITLE */}
-            {/* Cambiar yearsOfProduction y fuels*/}
-            <CustomFilter title="fuel" options={fuels} setFilter={setFuel} />
-            <CustomFilter
-              title="year"
+            <CustomFilter title="Street" options={Street} setFilter={setStreet} />
+{/*             <CustomFilter
+              title="Street"
               options={yearsOfProduction}
               setFilter={setYear}
-            />
+            /> */}
           </div>
         </div>
 
-        {allCars.length > 0 ? (
+        {allHouses.length > 0 ? (
           <section>
             <div className="home__cars-wrapper">
-              {allCars?.map((car) => (
-                <CarCard car={car} />
+              {allHouses?.map((house) => (
+                <HouseCard house={house} />
               ))}
             </div>
 
@@ -99,7 +90,7 @@ export default function Home() {
 
             <ShowMore
               pageNumber={limit / 10}
-              isNext={limit > allCars.length}
+              isNext={limit > allHouses.length}
               setLimit={setLimit}
             />
           </section>
@@ -108,7 +99,7 @@ export default function Home() {
             <h2 className="text-black text-xl font-bold">
               Oops, no hay resultados
             </h2>
-            <p>{allCars?.message}</p>
+            <p>{allHouses?.message}</p>
           </div>
         )}
       </div>
