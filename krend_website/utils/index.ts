@@ -1,6 +1,6 @@
 // Function to make a call to the API 
 
-import { CarProps, FilterProps } from "@/types";
+import { CarProps, HouseProps, PropsFiltros, FilterProps } from "@/types";
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
     const basePricePerDay = 50; // Base rental price per day in dollars
@@ -32,6 +32,26 @@ export async function fetchCars(filters: FilterProps) {
       }
     );
   // Parse the response as JSON
+  const result = await response.json();
+
+  return result;
+}
+
+export async function fetchHouses(filtros: PropsFiltros) {
+  const { street, limit } = filtros;
+  
+  // URL de tu API local
+  const apiUrl = `http://localhost:8081/casas?&limit=${limit}`;
+  
+  const headers = {
+      'Content-Type': 'application/json',
+  };
+
+  const response = await fetch(apiUrl, {
+      headers: headers,
+  });
+
+  // Parsea la respuesta como JSON
   const result = await response.json();
 
   return result;

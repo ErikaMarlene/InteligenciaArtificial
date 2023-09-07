@@ -1,8 +1,7 @@
 "use client";
 import {
   CustomFilter,
-  Hero,
-  HouseCard,
+  CarCard,
   SearchBar,
   ShowMore,
 } from "@/components";
@@ -25,6 +24,7 @@ export default function Home() {
   //filter states
   const [fuel, setFuel] = useState("");
   const [year, setYear] = useState(2022);
+
 
   //pagination state
   const [limit, setLimit] = useState(10);
@@ -81,7 +81,7 @@ export default function Home() {
           <section>
             <div className="home__cars-wrapper">
               {allCars?.map((car) => (
-                <HouseCard car={car} />
+                <CarCard car={car} />
               ))}
             </div>
 
