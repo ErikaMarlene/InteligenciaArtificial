@@ -6,10 +6,9 @@ import {
   ShowMore,
   LoadingSpinner,
 } from "@/components";
-import { Street } from "@/constants";
+import { Street, MSZoning, Alley } from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 // Podemos pasarle {parámetros}
 export default function Home() {
@@ -17,11 +16,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   //search states
-  
 
   //filter states
   const [street, setStreet] = useState("");
-
+  const [mszoning, setMszoning] = useState("");
+  const [alley, setAlley] = useState("");
   //pagination state
   const [limit, setLimit] = useState(10);
 
@@ -31,6 +30,8 @@ export default function Home() {
       const result = await fetchHouses({
         street: street || "",
         limit: limit || 10,
+        mszoning: mszoning || "",
+        alley: alley || "",
       });
       setAllHouses(result);
     } catch (error) {
@@ -41,17 +42,19 @@ export default function Home() {
   };
   useEffect(() => {
     getHouses();
-  }, [street, limit]);
+  }, [street, limit, mszoning, alley]);
 
-  const isDataEmpty = !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
+  const isDataEmpty =
+    !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
 
   return (
     <main className="overflow-hidden pt-[50px]">
-
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Catálogo de Casas</h1>
-          <p className="hero__subtitle">Explora las casas que pueden ser de tu interés.</p>
+          <p className="hero__subtitle">
+            Explora las casas que pueden ser de tu interés.
+          </p>
         </div>
 
         <div className="home__filters">
@@ -60,12 +63,21 @@ export default function Home() {
           <div className="home__filter-container">
             <p className="text-xl font-semibold">Ordenar por:</p>
             {/* CAMBIAR TITLE */}
-            <CustomFilter title="Street" options={Street} setFilter={setStreet} />
-{/*             <CustomFilter
+            <CustomFilter
+              title="MSZoning"
+              options={MSZoning}
+              setFilter={setMszoning}
+            />
+            <CustomFilter
               title="Street"
-              options={yearsOfProduction}
-              setFilter={setYear}
-            /> */}
+              options={Street}
+              setFilter={setStreet}
+            />
+                        <CustomFilter
+              title="Alley"
+              options={Alley}
+              setFilter={setAlley}
+            />
           </div>
         </div>
         {loading ? (
@@ -74,14 +86,14 @@ export default function Home() {
           </div>
         ) : (
           <section>
-          <div className="home__cars-wrapper">
-            {allHouses?.map((house) => (
-              <HouseCard house={house} />
-            ))}
-          </div>
-          </section> 
+            <div className="home__cars-wrapper">
+              {allHouses?.map((house) => (
+                <HouseCard house={house} />
+              ))}
+            </div>
+          </section>
         )}
-        
+
         {isDataEmpty && (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">
@@ -89,12 +101,12 @@ export default function Home() {
             </h2>
             <p>{allHouses?.message}</p>
           </div>
-        )}  
+        )}
         <ShowMore
-        pageNumber={limit / 10}
-        isNext={limit > allHouses.length}
-        setLimit={setLimit}
-      />
+          pageNumber={limit / 10}
+          isNext={limit > allHouses.length}
+          setLimit={setLimit}
+        />
       </div>
     </main>
   );

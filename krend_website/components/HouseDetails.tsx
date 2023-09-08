@@ -66,7 +66,7 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
                   {/* DESCRIBCIÓN DE LA CASA */}
                   <div className="flex-1 flex flex-col gap-2">
                     <h2 className="font-semibold text-xl capitalize">
-                        {house.Neighborhood} {house.LotArea}
+                        {house.Neighborhood} {house.LotArea} ft&sup2;
                     </h2>
                     <div className="mt-3 flex flex-wrap gap-4">
                         {Object.entries(house).map(([key, value]) => (
