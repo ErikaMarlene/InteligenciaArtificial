@@ -85,7 +85,7 @@ export default function Home() {
         {isDataEmpty && (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">
-              {/* Oops, no hay resultados */}
+              Oops, no hay resultados
             </h2>
             <p>{allHouses?.message}</p>
           </div>
