@@ -40,7 +40,7 @@ export async function fetchCars(filters: FilterProps) {
 export async function fetchHouses(filtros: PropsFiltros) {
   const { street, limit } = filtros;
   
-  const apiUrl = `http://localhost:8081/casas?limit=${limit}&Street=${street}`;
+  const apiUrl = `http://localhost:8081/casas?limit=${limit}&Street?=${street}`;
   
   const headers = {
       'Content-Type': 'application/json',
