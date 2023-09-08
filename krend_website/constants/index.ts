@@ -1,7 +1,16 @@
+export const MSZoning = [
+    {title: "Clasificación general de zonificación", value: ""},
+    { title: "Floating Village Residential", value: "FV" },
+    { title: "Residential High Density", value: "RH" },
+    { title: "Residential Medium Density", value: "RM" },
+    { title: "Residential Low Density", value: "RL" },
+    { title: "Commercial", value: "C (all)" }
+];
+
 export const Street = [
   {
-    title: "Type of road access to property",
-    value: "?",
+    title: "Tipo de camino para acceder a la propiedad",
+    value: "",
   },
   {
     title: "Paved",
@@ -13,7 +22,24 @@ export const Street = [
   },
 ];
 
-export const lotArea = [];
+export const Alley = [
+  {
+    title: "Tipo de acceso de callejón",
+    value: "",
+  },
+  {
+    title: "Paved",
+    value: "Pave",
+  },
+  {
+    title: "Gravel",
+    value: "Grvl",
+  },
+  {
+    title: "Ninguno",
+    value: "None",
+  }
+];
 // Delete from here
 export const manufacturers = [
   "Acura",

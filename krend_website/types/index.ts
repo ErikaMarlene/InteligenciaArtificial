@@ -125,6 +125,8 @@ export interface PropsFiltros {
   pageNumber?: number;
   street?: string;
   limit?: number;
+  mszoning?: string;
+  alley?: string;
 }
 export interface HomeProps {
   searchParams: FilterProps;

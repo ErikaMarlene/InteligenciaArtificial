@@ -35,7 +35,10 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="custom-filter__options">
+            <Listbox.Options style={{
+                width: "max-content",
+                minWidth: "100%",
+              }} className="custom-filter__options">
               {options.map((option) => (
                 <Listbox.Option
                   key={option.title}
