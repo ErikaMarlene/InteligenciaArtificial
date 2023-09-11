@@ -28,10 +28,10 @@ export default function Home() {
     setLoading(true);
     try {
       const result = await fetchHouses({
-        street: street || "",
+        street: street || "?",
         limit: limit || 10,
-        mszoning: mszoning || "",
-        alley: alley || "",
+        mszoning: mszoning || "?",
+        alley: alley || "?",
       });
       setAllHouses(result);
     } catch (error) {

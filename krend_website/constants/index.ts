@@ -1,43 +1,43 @@
 export const MSZoning = [
-    {title: "Clasificación general de zonificación", value: ""},
-    { title: "Floating Village Residential", value: "FV" },
-    { title: "Residential High Density", value: "RH" },
-    { title: "Residential Medium Density", value: "RM" },
-    { title: "Residential Low Density", value: "RL" },
-    { title: "Commercial", value: "C (all)" }
+    {title: "Clasificación general de zonificación", value: "?"},
+    { title: "Floating Village Residential", value: "=FV" },
+    { title: "Residential High Density", value: "=RH" },
+    { title: "Residential Medium Density", value: "=RM" },
+    { title: "Residential Low Density", value: "=RL" },
+    { title: "Commercial", value: "=C (all)" }
 ];
 
 export const Street = [
   {
     title: "Tipo de camino para acceder a la propiedad",
-    value: "",
+    value: "?",
   },
   {
     title: "Paved",
-    value: "Pave",
+    value: "=Pave",
   },
   {
     title: "Gravel",
-    value: "Grvl",
+    value: "=Grvl",
   },
 ];
 
 export const Alley = [
   {
     title: "Tipo de acceso de callejón",
-    value: "",
+    value: "?",
   },
   {
     title: "Paved",
-    value: "Pave",
+    value: "=Pave",
   },
   {
     title: "Gravel",
-    value: "Grvl",
+    value: "=Grvl",
   },
   {
     title: "Ninguno",
-    value: "None",
+    value: "=None",
   }
 ];
 // Delete from here
