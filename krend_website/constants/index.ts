@@ -1,3 +1,8 @@
+export const Precio = [
+  {title: "Precio", value: "=desc"},
+  {title: "De menor a mayor $", value: "=asc" },
+  {title:"De mayor a menor $" , value: "=desc"},
+]
 export const MSZoning = [
     {title: "Clasificación general de zonificación", value: "?"},
     { title: "Floating Village Residential", value: "=FV" },

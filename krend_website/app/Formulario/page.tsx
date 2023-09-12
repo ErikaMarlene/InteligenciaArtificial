@@ -53,7 +53,7 @@ const formulario = () => {
     <div className='hero'>
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">
-          Valua tu casa de forma rápida y sencilla!
+          ¡Valua tu casa de forma rápida y sencilla!
         </h1>
 
         <p className="hero__subtitle">

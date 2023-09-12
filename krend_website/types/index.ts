@@ -127,6 +127,7 @@ export interface PropsFiltros {
   limit?: number;
   mszoning?: string;
   alley?: string;
+  precio?: string;
 }
 export interface HomeProps {
   searchParams: FilterProps;

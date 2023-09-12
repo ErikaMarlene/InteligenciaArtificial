@@ -6,7 +6,7 @@ import {
   ShowMore,
   LoadingSpinner,
 } from "@/components";
-import { Street, MSZoning, Alley } from "@/constants";
+import { Street, MSZoning, Alley, Precio } from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
 
@@ -15,12 +15,11 @@ export default function Home() {
   const [allHouses, setAllHouses] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  //search states
-
   //filter states
   const [street, setStreet] = useState("");
   const [mszoning, setMszoning] = useState("");
   const [alley, setAlley] = useState("");
+  const [precio, setPrecio] = useState("");
   //pagination state
   const [limit, setLimit] = useState(10);
 
@@ -32,6 +31,7 @@ export default function Home() {
         limit: limit || 10,
         mszoning: mszoning || "?",
         alley: alley || "?",
+        precio: precio || "desc",
       });
       setAllHouses(result);
     } catch (error) {
@@ -42,7 +42,7 @@ export default function Home() {
   };
   useEffect(() => {
     getHouses();
-  }, [street, limit, mszoning, alley]);
+  }, [street, limit, mszoning, alley, precio]);
 
   const isDataEmpty =
     !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
@@ -61,8 +61,8 @@ export default function Home() {
           {/* <SearchBar setManufacturer={setManufacturer} setModel={setModel} /> */}
 
           <div className="home__filter-container">
-            <p className="text-xl font-semibold">Ordenar por:</p>
-            {/* CAMBIAR TITLE */}
+            <p className="text-xl font-semibold">Filtrar por:</p>
+
             <CustomFilter
               title="MSZoning"
               options={MSZoning}
@@ -77,6 +77,12 @@ export default function Home() {
               title="Alley"
               options={Alley}
               setFilter={setAlley}
+            />
+            <p className="text-xl font-semibold">Ordenar por:</p>
+            <CustomFilter
+              title="Precio"
+              options={Precio}
+              setFilter={setPrecio}
             />
           </div>
         </div>
