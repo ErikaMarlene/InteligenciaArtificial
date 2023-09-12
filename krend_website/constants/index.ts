@@ -14,11 +14,11 @@ export const Street = [
   },
   {
     title: "Pavimentado",
-    value: "Pave",
+    value: "=Pave",
   },
   {
     title: "Grava",
-    value: "Grvl",
+    value: "=Grvl",
   },
 ];
 
@@ -29,104 +29,105 @@ export const Alley = [
   },
   {
     title: "Pavimentado",
-    value: "Pave",
+    value: "=Pave",
   },
   {
     title: "Grava",
-    value: "Grvl",
+    value: "=Grvl",
   },
   {
     title: "Ninguno",
-    value: "None",
+    value: "=None",
   }
 ];
 
 export const LotShapeOptions = [
-  { title: "Regular", value: "Reg" },
-  { title: "Slightly irregular", value: "IR1" },
-  { title: "Moderately Irregular", value: "IR2" },
-  { title: "Irregular", value: "IR3" }
+  { title: "Regular", value: "=Reg" },
+  { title: "Slightly irregular", value: "=IR1" },
+  { title: "Moderately Irregular", value: "=IR2" },
+  { title: "Irregular", value: "=IR3" }
 ];
 
 export const LandContourOptions = [
-  { title: "Near Flat/Level", value: "Lvl" },
-  { title: "Banked - Quick and significant rise from street grade to building", value: "Bnk" },
-  { title: "Hillside - Significant slope from side to side", value: "HLS" },
-  { title: "Depression", value: "Low" }
+  { title: "Near Flat/Level", value: "=Lvl" },
+  { title: "Banked - Quick and significant rise from street grade to building", value: "=Bnk" },
+  { title: "Hillside - Significant slope from side to side", value: "=HLS" },
+  { title: "Depression", value: "=Low" }
 ];
 
 export const UtilitiesOptions = [
-  { title: "All public Utilities (E,G,W,& S)", value: "AllPub" },
-  { title: "Electricity, Gas, and Water (Septic Tank)", value: "NoSewr" },
-  { title: "Electricity and Gas Only", value: "NoSeWa" },
-  { title: "Electricity only", value: "ELO" }
+  { title: "All public Utilities (E,G,W,& S)", value: "=AllPub" },
+  { title: "Electricity, Gas, and Water (Septic Tank)", value: "=NoSewr" },
+  { title: "Electricity and Gas Only", value: "=NoSeWa" },
+  { title: "Electricity only", value: "=ELO" }
 ];
 
 export const LotConfigOptions = [
-  { title: "Inside", value: "Inside" },
-  { title: "Corner", value: "Corner" },
-  { title: "Cul-de-sac", value: "CulDSac" },
-  { title: "Frontage on 2 sides of property", value: "FR2" },
-  { title: "Frontage on 3 sides of property", value: "FR3" }
+  { title: "Inside", value: "=Inside" },
+  { title: "Corner", value: "=Corner" },
+  { title: "Cul-de-sac", value: "=CulDSac" },
+  { title: "Frontage on 2 sides of property", value: "=FR2" },
+  { title: "Frontage on 3 sides of property", value: "=FR3" }
 ];
 
 export const LandSlopeOptions = [
-  { title: "Gentle slope", value: "Gtl" },
-  { title: "Moderate Slope", value: "Mod" },
-  { title: "Severe Slope", value: "Sev" }
+  { title: "Gentle slope", value: "=Gtl" },
+  { title: "Moderate Slope", value: "=Mod" },
+  { title: "Severe Slope", value: "=Sev" }
 ];
 
 export const NeighborhoodOptions = [
-  { title: "Bloomington Heights", value: "Blmngtn" },
-  { title: "Bluestem", value: "Blueste" },
-  { title: "Briardale", value: "BrDale" },
-  { title: "Brookside", value: "BrkSide" },
-  { title: "Clear Creek", value: "ClearCr" },
-  { title: "College Creek", value: "CollgCr" },
-  { title: "Crawford", value: "Crawfor" },
-  { title: "Edwards", value: "Edwards" },
-  { title: "Gilbert", value: "Gilbert" },
-  { title: "Iowa DOT and Rail Road", value: "IDOTRR" },
-  { title: "Meadow Village", value: "MeadowV" },
-  { title: "Mitchell", value: "Mitchel" },
-  { title: "North Ames", value: "Names" },
-  { title: "Northridge", value: "NoRidge" },
-  { title: "Northpark Villa", value: "NPkVill" },
-  { title: "Northridge Heights", value: "NridgHt" },
-  { title: "Northwest Ames", value: "NWAmes" },
-  { title: "Old Town", value: "OldTown" },
-  { title: "South & West of Iowa State University", value: "SWISU" },
-  { title: "Sawyer", value: "Sawyer" },
-  { title: "Sawyer West", value: "SawyerW" },
-  { title: "Somerset", value: "Somerst" },
-  { title: "Stone Brook", value: "StoneBr" },
-  { title: "Timberland", value: "Timber" },
-  { title: "Veenker", value: "Veenker" }
+  { title: "Bloomington Heights", value: "=Blmngtn" },
+  { title: "Bluestem", value: "=Blueste" },
+  { title: "Briardale", value: "=BrDale" },
+  { title: "Brookside", value: "=BrkSide" },
+  { title: "Clear Creek", value: "=ClearCr" },
+  { title: "College Creek", value: "=CollgCr" },
+  { title: "Crawford", value: "=Crawfor" },
+  { title: "Edwards", value: "=Edwards" },
+  { title: "Gilbert", value: "=Gilbert" },
+  { title: "Iowa DOT and Rail Road", value: "=IDOTRR" },
+  { title: "Meadow Village", value: "=MeadowV" },
+  { title: "Mitchell", value: "=Mitchel" },
+  { title: "North Ames", value: "=Names" },
+  { title: "Northridge", value: "=NoRidge" },
+  { title: "Northpark Villa", value: "=NPkVill" },
+  { title: "Northridge Heights", value: "=NridgHt" },
+  { title: "Northwest Ames", value: "=NWAmes" },
+  { title: "Old Town", value: "=OldTown" },
+  { title: "South & West of Iowa State University", value: "=SWISU" },
+  { title: "Sawyer", value: "=Sawyer" },
+  { title: "Sawyer West", value: "=SawyerW" },
+  { title: "Somerset", value: "=Somerst" },
+  { title: "Stone Brook", value: "=StoneBr" },
+  { title: "Timberland", value: "=Timber" },
+  { title: "Veenker", value: "=Veenker" }
 ];
 
 export const Condition1Options = [
-  { title: "Adjacent to arterial street", value: "Artery" },
-  { title: "Adjacent to feeder street", value: "Feedr" },
-  { title: "Normal", value: "Norm" },
-  { title: "Within 200' of North-South Railroad", value: "RRNn" },
-  { title: "Adjacent to North-South Railroad", value: "RRAn" },
-  { title: "Near positive off-site feature--park, greenbelt, etc.", value: "PosN" },
-  { title: "Adjacent to postive off-site feature", value: "PosA" },
-  { title: "Within 200' of East-West Railroad", value: "RRNe" },
-  { title: "Adjacent to East-West Railroad", value: "RRAe" }
+  { title: "Adjacent to arterial street", value: "=Artery" },
+  { title: "Adjacent to feeder street", value: "=Feedr" },
+  { title: "Normal", value: "=Norm" },
+  { title: "Within 200' of North-South Railroad", value: "=RRNn" },
+  { title: "Adjacent to North-South Railroad", value: "=RRAn" },
+  { title: "Near positive off-site feature--park, greenbelt, etc.", value: "=PosN" },
+  { title: "Adjacent to postive off-site feature", value: "=PosA" },
+  { title: "Within 200' of East-West Railroad", value: "=RRNe" },
+  { title: "Adjacent to East-West Railroad", value: "=RRAe" }
 ];
 
 export const Condition2Options = [
-  { title: "Adjacent to arterial street", value: "Artery" },
-  { title: "Adjacent to feeder street", value: "Feedr" },
-  { title: "Normal", value: "Norm" },
-  { title: "Within 200' of North-South Railroad", value: "RRNn" },
-  { title: "Adjacent to North-South Railroad", value: "RRAn" },
-  { title: "Near positive off-site feature--park, greenbelt, etc.", value: "PosN" },
-  { title: "Adjacent to postive off-site feature", value: "PosA" },
-  { title: "Within 200' of East-West Railroad", value: "RRNe" },
-  { title: "Adjacent to East-West Railroad", value: "RRAe" }
+  { title: "Adjacent to arterial street", value: "=Artery" },
+  { title: "Adjacent to feeder street", value: "=Feedr" },
+  { title: "Normal", value: "=Norm" },
+  { title: "Within 200' of North-South Railroad", value: "=RRNn" },
+  { title: "Adjacent to North-South Railroad", value: "=RRAn" },
+  { title: "Near positive off-site feature--park, greenbelt, etc.", value: "=PosN" },
+  { title: "Adjacent to postive off-site feature", value: "=PosA" },
+  { title: "Within 200' of East-West Railroad", value: "=RRNe" },
+  { title: "Adjacent to East-West Railroad", value: "=RRAe" }
 ];
+
 
 export const BldgTypeOptions = [
   { title: "Single-family Detached", value: "=1Fam" },
