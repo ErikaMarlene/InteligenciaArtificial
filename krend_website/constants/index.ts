@@ -42,6 +42,10 @@ export const Alley = [
 ];
 
 export const LotShapeOptions = [
+  {
+    title: "Forma general de la propiedad",
+    value: "?"
+  },
   { title: "Regular", value: "=Reg" },
   { title: "Slightly irregular", value: "=IR1" },
   { title: "Moderately Irregular", value: "=IR2" },
@@ -49,6 +53,10 @@ export const LotShapeOptions = [
 ];
 
 export const LandContourOptions = [
+  {
+    title: "Nivel de la propiedad",
+    value: "?"
+  },
   { title: "Near Flat/Level", value: "=Lvl" },
   { title: "Banked - Quick and significant rise from street grade to building", value: "=Bnk" },
   { title: "Hillside - Significant slope from side to side", value: "=HLS" },
@@ -56,6 +64,10 @@ export const LandContourOptions = [
 ];
 
 export const UtilitiesOptions = [
+  {
+    title: "Tipo de servicios públicos disponibles",
+    value: "?"
+  },
   { title: "All public Utilities (E,G,W,& S)", value: "=AllPub" },
   { title: "Electricity, Gas, and Water (Septic Tank)", value: "=NoSewr" },
   { title: "Electricity and Gas Only", value: "=NoSeWa" },
@@ -63,6 +75,10 @@ export const UtilitiesOptions = [
 ];
 
 export const LotConfigOptions = [
+  {
+    title: "Configuración del lote",
+    value: "?"
+  },
   { title: "Inside", value: "=Inside" },
   { title: "Corner", value: "=Corner" },
   { title: "Cul-de-sac", value: "=CulDSac" },
@@ -71,12 +87,20 @@ export const LotConfigOptions = [
 ];
 
 export const LandSlopeOptions = [
+  {
+    title: "Pendiente de la propiedad",
+    value: "?"
+  },
   { title: "Gentle slope", value: "=Gtl" },
   { title: "Moderate Slope", value: "=Mod" },
   { title: "Severe Slope", value: "=Sev" }
 ];
 
 export const NeighborhoodOptions = [
+  {
+    title: "Vecindario",
+    value: "?"
+  },
   { title: "Bloomington Heights", value: "=Blmngtn" },
   { title: "Bluestem", value: "=Blueste" },
   { title: "Briardale", value: "=BrDale" },
@@ -105,6 +129,10 @@ export const NeighborhoodOptions = [
 ];
 
 export const Condition1Options = [
+  {
+    title: "Proximidad a diversas condiciones (Condición 1)",
+    value: "?"
+  },
   { title: "Adjacent to arterial street", value: "=Artery" },
   { title: "Adjacent to feeder street", value: "=Feedr" },
   { title: "Normal", value: "=Norm" },
@@ -117,6 +145,10 @@ export const Condition1Options = [
 ];
 
 export const Condition2Options = [
+  {
+    title: "Proximidad a diversas condiciones (Condición 2)",
+    value: "?"
+  },
   { title: "Adjacent to arterial street", value: "=Artery" },
   { title: "Adjacent to feeder street", value: "=Feedr" },
   { title: "Normal", value: "=Norm" },
@@ -130,6 +162,10 @@ export const Condition2Options = [
 
 
 export const BldgTypeOptions = [
+  {
+    title: "Tipo de vivienda",
+    value: "?"
+  },
   { title: "Single-family Detached", value: "=1Fam" },
   { title: "Two-family Conversion; originally built as one-family dwelling", value: "=2FmCon" },
   { title: "Duplex", value: "=Duplx" },
@@ -138,6 +174,10 @@ export const BldgTypeOptions = [
 ];
 
 export const HouseStyleOptions = [
+  {
+    title: "Estilo de vivienda",
+    value: "?"
+  },
   { title: "One story", value: "=1Story" },
   { title: "One and one-half story: 2nd level finished", value: "=1.5Fin" },
   { title: "One and one-half story: 2nd level unfinished", value: "=1.5Unf" },
@@ -149,6 +189,10 @@ export const HouseStyleOptions = [
 ];
 
 export const OverallQualOptions = [
+  {
+    title: "Calificación general de materiales y acabados de la casa",
+    value: "?"
+  },
   { title: "Very Excellent", value: "=10" },
   { title: "Excellent", value: "=9" },
   { title: "Very Good", value: "=8" },
@@ -162,6 +206,10 @@ export const OverallQualOptions = [
 ];
 
 export const OverallCondOptions = [
+  {
+    title: "Condición general de la casa",
+    value: "?"
+  },
   { title: "Very Excellent", value: "=10" },
   { title: "Excellent", value: "=9" },
   { title: "Very Good", value: "=8" },
@@ -175,6 +223,10 @@ export const OverallCondOptions = [
 ];
 
 export const RoofStyleOptions = [
+  {
+    title: "Tipo de techo",
+    value: "?"
+  },
   { title: "Flat", value: "=Flat" },
   { title: "Gable", value: "=Gable" },
   { title: "Gabrel (Barn)", value: "=Gambrel" },
@@ -184,6 +236,10 @@ export const RoofStyleOptions = [
 ];
 
 export const RoofMatlOptions = [
+  {
+    title: "Material del techo",
+    value: "?"
+  },
   { title: "Clay or Tile", value: "=ClyTile" },
   { title: "Standard (Composite) Shingle", value: "=CompShg" },
   { title: "Membrane", value: "=Membran" },
@@ -195,6 +251,10 @@ export const RoofMatlOptions = [
 ];
 
 export const Exterior1stOptions = [
+  {
+    title: "Cubierta exterior de la casa",
+    value: "?"
+  },
   { title: "Asbestos Shingles", value: "=AsbShng" },
   { title: "Asphalt Shingles", value: "=AsphShn" },
   { title: "Brick Common", value: "=BrkComm" },
@@ -215,6 +275,10 @@ export const Exterior1stOptions = [
 ];
 
 export const Exterior2ndOptions = [
+  {
+    title: "Segundo material de cubierta exterior (si hay más de uno)",
+    value: "?"
+  },
   { title: "Asbestos Shingles", value: "=AsbShng" },
   { title: "Asphalt Shingles", value: "=AsphShn" },
   { title: "Brick Common", value: "=BrkComm" },
@@ -235,6 +299,10 @@ export const Exterior2ndOptions = [
 ];
 
 export const MasVnrTypeOptions = [
+  {
+    title: "Tipo de revestimiento de mampostería",
+    value: "?"
+  },
   { title: "Brick Common", value: "=BrkCmn" },
   { title: "Brick Face", value: "=BrkFace" },
   { title: "Cinder Block", value: "=CBlock" },
@@ -243,6 +311,10 @@ export const MasVnrTypeOptions = [
 ];
 
 export const ExterQualOptions = [
+  {
+    title: "Calidad del exterior",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Average/Typical", value: "=TA" },
@@ -251,6 +323,10 @@ export const ExterQualOptions = [
 ];
 
 export const ExterCondOptions = [
+  {
+    title: "Condición actual del exterior",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Average/Typical", value: "=TA" },
@@ -259,6 +335,10 @@ export const ExterCondOptions = [
 ];
 
 export const FoundationOptions = [
+  {
+    title: "Tipo de cimentación",
+    value: "?"
+  },
   { title: "Brick & Tile", value: "=BrkTil" },
   { title: "Cinder Block", value: "=CBlock" },
   { title: "Poured Contrete", value: "=PConc" },
@@ -268,6 +348,10 @@ export const FoundationOptions = [
 ];
 
 export const BsmtQualOptions = [
+  {
+    title: "Calificación de la altura del sótano",
+    value: "?"
+  },
   { title: "Excellent (100+ inches)", value: "=Ex" },
   { title: "Good (90-99 inches)", value: "=Gd" },
   { title: "Typical (80-89 inches)", value: "=TA" },
@@ -277,6 +361,10 @@ export const BsmtQualOptions = [
 ];
 
 export const BsmtCondOptions = [
+  {
+    title: "Condición general del sótano",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Typical - slight dampness allowed", value: "=TA" },
@@ -286,6 +374,10 @@ export const BsmtCondOptions = [
 ];
 
 export const BsmtExposureOptions = [
+  {
+    title: "Exposición del sótano",
+    value: "?"
+  },
   { title: "Good Exposure", value: "=Gd" },
   { title: "Average Exposure (split levels or foyers typically score average or above)", value: "=Av" },
   { title: "Minimum Exposure", value: "=Mn" },
@@ -294,6 +386,10 @@ export const BsmtExposureOptions = [
 ];
 
 export const BsmtFinType1Options = [
+  {
+    title: "Tipo de área terminada del sótano",
+    value: "?"
+  },
   { title: "Good Living Quarters", value: "=GLQ" },
   { title: "Average Living Quarters", value: "=ALQ" },
   { title: "Below Average Living Quarters", value: "=BLQ" },
@@ -304,6 +400,10 @@ export const BsmtFinType1Options = [
 ];
 
 export const BsmtFinType2Options = [
+  {
+    title: "Tipo de área terminada del sótano (si hay múltiples tipos)",
+    value: "?"
+  },
   { title: "Good Living Quarters", value: "=GLQ" },
   { title: "Average Living Quarters", value: "=ALQ" },
   { title: "Below Average Living Quarters", value: "=BLQ" },
@@ -314,6 +414,10 @@ export const BsmtFinType2Options = [
 ];
 
 export const HeatingOptions = [
+  {
+    title: "Tipo de calefacción",
+    value: "?"
+  },
   { title: "Floor Furnace", value: "=Floor" },
   { title: "Gas forced warm air furnace", value: "=GasA" },
   { title: "Gas hot water or steam heat", value: "=GasW" },
@@ -323,6 +427,10 @@ export const HeatingOptions = [
 ];
 
 export const HeatingQCOptions = [
+  {
+    title: "Calidad y condición de la calefacción",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Average/Typical", value: "=TA" },
@@ -331,11 +439,19 @@ export const HeatingQCOptions = [
 ];
 
 export const CentralAirOptions = [
+  {
+    title: "Aire acondicionado central",
+    value: "?"
+  },
   { title: "No", value: "=N" },
   { title: "Yes", value: "=Y" }
 ];
 
 export const ElectricalOptions = [
+  {
+    title: "Sistema eléctrico",
+    value: "?"
+  },
   { title: "Standard Circuit Breakers & Romex", value: "=SBrkr" },
   { title: "Fuse Box over 60 AMP and all Romex wiring (Average)", value: "=FuseA" },
   { title: "60 AMP Fuse Box and mostly Romex wiring (Fair)", value: "=FuseF" },
@@ -344,6 +460,10 @@ export const ElectricalOptions = [
 ];
 
 export const KitchenQualOptions = [
+  {
+    title: "Calidad de la Cocina",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Typical/Average", value: "=TA" },
@@ -352,6 +472,10 @@ export const KitchenQualOptions = [
 ];
 
 export const FunctionalOptions = [
+  {
+    title: "Funcionalidad de la Casa",
+    value: "?"
+  },
   { title: "Typical Functionality", value: "=Typ" },
   { title: "Minor Deductions 1", value: "=Min1" },
   { title: "Minor Deductions 2", value: "=Min2" },
@@ -363,6 +487,10 @@ export const FunctionalOptions = [
 ];
 
 export const FireplaceQuOptions = [
+  {
+    title: "Calidad de la Chimenea",
+    value: "?"
+  },
   { title: "Excellent - Exceptional Masonry Fireplace", value: "=Ex" },
   { title: "Good - Masonry Fireplace in main level", value: "=Gd" },
   { title: "Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement", value: "=TA" },
@@ -372,6 +500,10 @@ export const FireplaceQuOptions = [
 ];
 
 export const GarageTypeOptions = [
+  {
+    title: "Ubicación del Garaje",
+    value: "?"
+  },
   { title: "2 Types", value: "=2Types" },
   { title: "Attache", value: "=Attchd" },
   { title: "Basement", value: "=Basment" },
@@ -382,6 +514,10 @@ export const GarageTypeOptions = [
 ];
 
 export const GarageFinishOptions = [
+  {
+    title: "Acabado Interior del Garaje",
+    value: "?"
+  },
   { title: "Finshed", value: "=Fin" },
   { title: "Rough Finished", value: "=RFn" },
   { title: "Unfinished", value: "=Unf" },
@@ -389,6 +525,10 @@ export const GarageFinishOptions = [
 ];
 
 export const GarageQualOptions = [
+  {
+    title: "Calidad del Garaje",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Typical/Average", value: "=TA" },
@@ -398,6 +538,10 @@ export const GarageQualOptions = [
 ];
 
 export const GarageCondOptions = [
+  {
+    title: "Condición del Garaje",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Typical/Average", value: "=TA" },
@@ -407,12 +551,20 @@ export const GarageCondOptions = [
 ];
 
 export const PavedDriveOptions = [
+  {
+    title: "Entrada Pavimentada",
+    value: "?"
+  },
   { title: "Paved", value: "=P" },
   { title: "Partial Pavement", value: "=Y" },
   { title: "Dirt/Gravel", value: "=N" }
 ];
 
 export const PoolQCOptions = [
+  {
+    title: "Entrada Pavimentada",
+    value: "?"
+  },
   { title: "Excellent", value: "=Ex" },
   { title: "Good", value: "=Gd" },
   { title: "Average/Typical", value: "=TA" },
@@ -421,6 +573,10 @@ export const PoolQCOptions = [
 ];
 
 export const FenceOptions = [
+  {
+    title: "Calidad de la Valla",
+    value: "?"
+  },
   { title: "Good Privacy", value: "=GdPrv" },
   { title: "Minimum Privacy", value: "=MnPrv" },
   { title: "Good Wood", value: "=GdWo" },
@@ -429,6 +585,10 @@ export const FenceOptions = [
 ];
 
 export const MiscFeatureOptions = [
+  {
+    title: "Característica Miscelánea",
+    value: "?"
+  },
   { title: "Elev", value: "=Elev" },
   { title: "Gar2", value: "=Gar2" },
   { title: "Othr", value: "=Othr" },
@@ -438,6 +598,10 @@ export const MiscFeatureOptions = [
 ];
 
 export const SaleTypeOptions = [
+  {
+    title: "Tipo de Venta",
+    value: "?"
+  },
   { title: "Court Officer Deed/Estate", value: "=COD" },
   { title: "Conventional", value: "=Con" },
   { title: "Conventional (All cash)", value: "=ConLw" },
@@ -448,6 +612,10 @@ export const SaleTypeOptions = [
 ];
 
 export const SaleConditionOptions = [
+  {
+    title: "Condición de Venta",
+    value: "?"
+  },
   { title: "Abnormal Sale - trade, foreclosure, short sale", value: "=Abnorml" },
   { title: "Adjoining Land Purchase", value: "=AdjLand" },
   { title: "Alloca - allocation of sale to a specific use", value: "=Alloca" },
