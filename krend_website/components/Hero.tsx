@@ -49,7 +49,7 @@ const Hero = () => {
           </p>
           <div className="flex items-center justify-center">
             <CustomButton
-              title="Busca aquí"
+              title="Busca aquí" //Boton busca aquí 
               containerStyles="bg-violeta text-white rounded-full mt-10"
               handleClick={handleScroll}
             />

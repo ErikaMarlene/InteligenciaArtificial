@@ -1,3 +1,4 @@
+//Boton de comprar
 import { Hero } from "@/components";
 
 export default function Main() {

@@ -16,14 +16,6 @@ function Navbar() {
                 className='object-contain'/>
             </Link>
             <div className="flex items-right gap-5">
-            <CustomButton
-            title="Registrarse"
-            btnType = "button"
-            containerStyles='text-white rounded-full bg-violeta min-w-[130 px]'/>
-            <CustomButton
-            title="Iniciar sesión"
-            btnType = "button"
-            containerStyles='text-white rounded-full bg-violeta min-w-[130 px]'/>
             </div>
         </nav>
     </header>

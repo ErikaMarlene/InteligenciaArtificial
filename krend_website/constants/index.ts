@@ -80,11 +80,5 @@ export const manufacturers = [
         { title: "Colabora con nosotros", url: "/Partnership" },
       ],
     },
-    {
-      title: "Redes Sociales",
-      links: [
-        { title: "Instagram", url: "https://www.instagram.com/" },
-        { title: "Twitter", url: "https://twitter.com/?lang=es" },
-      ],
-    },
+    
   ];
