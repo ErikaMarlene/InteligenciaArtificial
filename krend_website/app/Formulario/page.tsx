@@ -1,7 +1,54 @@
+'use client';
 import React from 'react';
 import Image from "next/image";
 
+
+import { Label, Select } from 'flowbite-react';
+import { FileInput, TextInput } from 'flowbite-react';
+
+import { Street, MSZoning, Alley } from "@/constants";
+import { fetchHouses } from "@/utils";
+import { useEffect, useState } from "react";
+
+
+
+
 const formulario = () => {
+  const [allHouses, setAllHouses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  //search states
+
+  //filter states
+  const [street, setStreet] = useState("");
+  const [mszoning, setMszoning] = useState("");
+  const [alley, setAlley] = useState("");
+  //pagination state
+  const [limit, setLimit] = useState(10);
+
+  const getHouses = async () => {
+    setLoading(true);
+    try {
+      const result = await fetchHouses({
+        street: street || "",
+        limit: limit || 10,
+        mszoning: mszoning || "",
+        alley: alley || "",
+      });
+      setAllHouses(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getHouses();
+  }, [street, limit, mszoning, alley]);
+
+  const isDataEmpty =
+    !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
+
   return (
     <div className='hero'>
       <div className="flex-1 pt-36 padding-x">
@@ -14,59 +61,128 @@ const formulario = () => {
         </p>
         
         <div className="mt-8">
-          
-          <form>
-            <div className="relative z-0 w-full mb-6 group">
-                  <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                  <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-                <input type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
-                 <input type="password" name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
-            </div>
-            <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="relative z-0 w-full mb-6 group">
-                 <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                 <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
-            </div>
-    
-            </div>
-            
-          </form>
-           
-          <fieldset>
-            <legend className="sr-only">Countries</legend>
+          {/*Datos personales */}
 
-            <div className="flex items-center mb-4">
-              <input id="country-option-1" type="radio" name="countries" value="USA" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" defaultChecked />
-              <label htmlFor="country-option-1" className="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                United States
-              </label>
+          <div className="flex max-w-md flex-col gap-4">
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="small"
+                  value="Nombre"
+                />
+              </div>
+              <TextInput
+                id="small"
+                sizing="sm"
+                type="text"
+              />
             </div>
 
-            <div className="flex items-center mb-4">
-              <input id="country-option-2" type="radio" name="countries" value="Germany" className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" />
-              <label htmlFor="country-option-2" className="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Germany
-              </label>
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="small"
+                  value="Apellido"
+                />
+              </div>
+              <TextInput
+                id="small"
+                sizing="sm"
+                type="text"
+              />
             </div>
-          </fieldset>
-          <label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your country</label>
-          <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option>United States</option>
-            <option>Canada</option>
-            <option>France</option>
-            <option>Germany</option>
-          </select>
-        
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload file</label>
-          <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"/>
-        
 
+            <div>
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="small"
+                  value="E-mail"
+                />
+              </div>
+              <TextInput
+                id="small"
+                sizing="sm"
+                type="text"
+              />
+            </div>
+          </div>
+
+
+           {/*Se inicia para seleccionar opciones predefinidas*/ }
+          <div
+          className="max-w-md"
+          id="select"
+          >
+            <div className="mb-2 block">
+              <Label
+                htmlFor="mszoning"
+                value="Selecciona la informacion que corresponde con tu vivienda"
+              />
+            </div>
+            <Select
+              id="venta"
+              required
+            >
+              {MSZoning.map((zone, index) => (
+                <option key={index} value={zone.value}>
+                  {zone.title}
+                </option>
+              ))}
+                        
+            </Select>
+
+            {/*Street */}
+            <div className="mb-2 block">
+            </div>
+            <Select
+              id="venta"
+              required
+            >
+              {Street.map((zone, index) => (
+                <option key={index} value={zone.value}>
+                  {zone.title}
+                </option>
+              ))}
+                        
+            </Select>
+
+            {/*Alley */}
+            <div className="mb-2 block">
+            </div>
+            <Select
+              id="venta"
+              required
+            >
+              {Alley.map((zone, index) => (
+                <option key={index} value={zone.value}>
+                  {zone.title}
+                </option>
+              ))}
+                        
+            </Select>
+          </div>
+
+
+
+          {/*Subir archivo */}
+          <div
+            className="max-w-md"
+            id="fileUpload"
+          >
+            <div className="mb-2 block">
+              <Label
+                htmlFor="file"
+                value="Upload file"
+              />
+            </div>
+            <FileInput
+              helperText="Subir planos de la vivienda"
+              id="file"
+            />
+          </div>
+
+
+          {/*Boton de submit */}
           <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
         </div>
       </div>
