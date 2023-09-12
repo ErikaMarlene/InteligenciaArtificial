@@ -7,6 +7,7 @@ import Home from "../app/Comprar/page";
 
 const Hero = () => {
   const handleScroll = () => {
+    
   };
   return (
     <div className="hero">
