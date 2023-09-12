@@ -118,7 +118,7 @@ const formulario = () => {
             <div className="mb-2 block">
               <Label
                 htmlFor="mszoning"
-                value="Selecciona la informacion que corresponde con tu vivienda"
+                value="Selecciona y llena con la información que corresponde con tu vivienda"
               />
             </div>
             <Select
