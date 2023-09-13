@@ -61,17 +61,14 @@ const formulario = () => {
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           minHeight: '100vh',
-          position: 'absolute', // Establecer la posición absoluta
-          top: 0, // Anclar arriba
-          left: 0, // Anclar a la izquierda
-          right: 0, // Anclar a la derecha
-          bottom: 0, // Anclar abajo
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           filter: 'blur(0px)',
-          
         }}
       ></div>
-
-
 
       <div className="flex-1 pt-36 padding-x" style={{ position: "relative", zIndex: 1, margin: '0 auto', maxWidth: '800px' }}>
         <h1 className="hero__title">
@@ -81,7 +78,8 @@ const formulario = () => {
         <p className="hero__subtitle">
           Revisa y llena el siguiente formulario para poder tener un valor de tu vivienda.
         </p>
-        
+
+           
         <div className="mt-8">
           {/*Datos personales */}
 
@@ -99,55 +97,16 @@ const formulario = () => {
                 type="text"
               />
             </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Apellido"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="E-mail"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-          </div>
-
-
-           {/*Se inicia para seleccionar opciones predefinidas
-           MSZoning*/ }
-
-          <div
-          className="max-w-md"
-          id="select"
-          >
+         
+ 
+            {/*SaleType */}
             <div className="mb-2 block">
-              <Label
-                htmlFor="mszoning"
-                value="Selecciona y llena con la información que corresponde con tu vivienda"
-              />
             </div>
             <Select
               id="venta"
               required
             >
-              {MSZoning.map((zone, index) => (
+              {SaleTypeOptions.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -155,8 +114,8 @@ const formulario = () => {
                         
             </Select>
 
-            {/*LotFrontage */}
-            <div>
+             {/*LotFrontage */}
+             <div>
               <div className="mb-2 block">
                 <Label
                   htmlFor="small"
@@ -876,44 +835,15 @@ const formulario = () => {
               />
             </div>
 
-            {/*Bedroom */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Dormitorios sobre el nivel del suelo:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
 
-            {/*Kitchen */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Cocinas sobre el nivel del suelo:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*KitchenQual */}
+            {/*Alley */}
             <div className="mb-2 block">
             </div>
             <Select
               id="venta"
               required
             >
-              {KitchenQualOptions.map((zone, index) => (
+              {Alley.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -921,29 +851,14 @@ const formulario = () => {
                         
             </Select>
 
-            {/*TotRmsAbvGrd */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Total de habitaciones sobre el nivel del suelo (No incluye baños):"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*Functional */}
+            {/*LotShape */}
             <div className="mb-2 block">
             </div>
             <Select
               id="venta"
               required
             >
-              {FunctionalOptions.map((zone, index) => (
+              {LotShapeOptions.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -951,29 +866,14 @@ const formulario = () => {
                         
             </Select>
 
-            {/*Fireplaces */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Número de chimeneas:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*FireplaceQu */}
+            {/*LandContour */}
             <div className="mb-2 block">
             </div>
             <Select
               id="venta"
               required
             >
-              {FireplaceQuOptions.map((zone, index) => (
+              {LandContourOptions.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -981,14 +881,14 @@ const formulario = () => {
                         
             </Select>
 
-            {/*GarageType */}
+            {/*Utilities */}
             <div className="mb-2 block">
             </div>
             <Select
               id="venta"
               required
             >
-              {GarageTypeOptions.map((zone, index) => (
+              {UtilitiesOptions.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -996,299 +896,14 @@ const formulario = () => {
                         
             </Select>
 
-            {/*GarageYrBlt */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Año de contrucción del garage:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*GarageFinish */}
+            {/*LotConfig */}
             <div className="mb-2 block">
             </div>
             <Select
               id="venta"
               required
             >
-              {GarageFinishOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*GarageCars */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Tamaño del garaje en capacidad de automóviles:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*GarageArea */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Tamaño del garaje en pies cuadrados:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*GarageQual */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {GarageQualOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*GarageCond */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {GarageCondOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*PavedDrive */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {PavedDriveOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*WoodDeckSF */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Pies cuadrados de área de terraza de madera:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*OpenPorchSF */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Pies cuadrados de área de porche abierto:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*EnclosedPorch */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Pies cuadrados de área de porche cerrado:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*3SsnPorch */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Área de Porche de Tres Estaciones en Pies Cuadrados:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*ScreenPorch */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Área de Porche cubierto en Pies Cuadrados:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*PoolArea */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Área de la Piscina en Pies Cuadrados:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*PoolQC */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {PoolQCOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*Fence */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {FenceOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*MiscFeature */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {MiscFeatureOptions.map((zone, index) => (
-                <option key={index} value={zone.value}>
-                  {zone.title}
-                </option>
-              ))}
-                        
-            </Select>
-
-            {/*MiscVal */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Valor Misceláneo en Dólares:"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*MoSold */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Mes de Venta (MM):"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*YrSold */}
-            <div>
-              <div className="mb-2 block">
-                <Label
-                  htmlFor="small"
-                  value="Año de Venta (AAAA):"
-                />
-              </div>
-              <TextInput
-                id="small"
-                sizing="sm"
-                type="text"
-              />
-            </div>
-
-            {/*SaleType */}
-            <div className="mb-2 block">
-            </div>
-            <Select
-              id="venta"
-              required
-            >
-              {SaleTypeOptions.map((zone, index) => (
+              {LotConfigOptions.map((zone, index) => (
                 <option key={index} value={zone.value}>
                   {zone.title}
                 </option>
@@ -1316,7 +931,6 @@ const formulario = () => {
           </div>
 
 
-
           {/*Subir archivo */}
           <div
             className="max-w-md"
@@ -1340,7 +954,15 @@ const formulario = () => {
         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Estimar</button>
         </div>
         </div>
-   
+
+
+
+    
+
+
+    
+
+
   
     </div>
     
@@ -1348,7 +970,3 @@ const formulario = () => {
 };
 
 export default formulario;
-
-
-
-
