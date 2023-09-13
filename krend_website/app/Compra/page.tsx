@@ -15,7 +15,7 @@ import {
   HouseStyleOptions,
   OverallCondOptions,
   SaleConditionOptions,
-  HeatingOptions,
+  BedroomAbvGr,
 } from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
@@ -34,7 +34,7 @@ export default function Home() {
   const [houseStyleOptions, setHouseStyleOptions] = useState("");
   const [overallCondOptions, setOverallCondOptions] = useState("");
   const [saleConditionOptions, setSaleConditionOptions] = useState("");
-  const [heatingOptions, setHeatingOptions] = useState("");
+  const [bedroomAbvGr, setBedroomAbvGr] = useState("");
   //pagination state
   const [limit, setLimit] = useState(10);
 
@@ -51,7 +51,7 @@ export default function Home() {
         houseStyleOptions: houseStyleOptions || "?",
         overallCondOptions: overallCondOptions || "?",
         saleConditionOptions: saleConditionOptions || "?",
-        heatingOptions: heatingOptions || "?",
+        bedroomAbvGr: bedroomAbvGr || "?",
       });
       setAllHouses(result);
     } catch (error) {
@@ -72,7 +72,7 @@ export default function Home() {
     houseStyleOptions,
     overallCondOptions,
     saleConditionOptions,
-    heatingOptions,
+    bedroomAbvGr,
   ]);
 
   const isDataEmpty =
@@ -87,7 +87,6 @@ export default function Home() {
             Explora las casas que pueden ser de tu interés.
           </p>
         </div>
-
         <div className="home__filters">
         <div className="home__filter-container">
             <p className="text-xl font-semibold">Ordenar por:</p>
@@ -132,9 +131,9 @@ export default function Home() {
               setFilter={setSaleConditionOptions}
             />
             <CustomFilter
-              title="HeatingOptions"
-              options={HeatingOptions}
-              setFilter={setHeatingOptions}
+              title="BedroomAbvGr"
+              options={BedroomAbvGr}
+              setFilter={setBedroomAbvGr}
             />
           </div>
 

@@ -132,7 +132,7 @@ export interface PropsFiltros {
   houseStyleOptions?: string;
   overallCondOptions?: string;
   saleConditionOptions?: string;
-  heatingOptions?: string;
+  bedroomAbvGr?: string;
 }
 export interface HomeProps {
   searchParams: FilterProps;

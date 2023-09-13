@@ -12,8 +12,6 @@ interface HouseDetailsProps {
 }
 
 const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
-  const handleScroll = () => {
-  };
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -71,11 +69,13 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
                     <h2 className="font-semibold text-xl capitalize">
                       {house.Neighborhood} {house.LotArea} ft&sup2;
                     </h2>
+                    <a href="/CompraExito">                      
                     <CustomButton
                       title="Comprar"
                       containerStyles="bg-violeta text-white rounded-full mt-10"
-                      handleClick={handleScroll}
+
                     />
+                    </a>
                     <div className="mt-3 flex flex-wrap gap-4">
                       {Object.entries(house).map(([key, value]) => (
                         <div
