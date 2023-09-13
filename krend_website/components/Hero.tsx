@@ -6,9 +6,6 @@ import CustomButton from "./CustomButton";
 import Home from "../app/Comprar/page";
 
 const Hero = () => {
-  const handleScroll = () => {
-    
-  };
   return (
     <div className="hero">
       <div
@@ -30,11 +27,12 @@ const Hero = () => {
             <br /> casa sin moverte de tu sillón
           </p>
           <div className="flex items-center justify-center">
+          <a href="/Formulario">
             <CustomButton
               title="Empieza aquí"
               containerStyles="bg-violeta text-white rounded-full mt-10"
-              handleClick={handleScroll}
             />
+          </a>
           </div>
         </div>
 
@@ -49,11 +47,13 @@ const Hero = () => {
             la casa que se ajuste a TUS necesidades
           </p>
           <div className="flex items-center justify-center">
+            <a href="/Compra">
+
             <CustomButton
               title="Busca aquí" //Boton busca aquí 
               containerStyles="bg-violeta text-white rounded-full mt-10"
-              handleClick={handleScroll}
-            />
+              />
+              </a>
           </div>
         </div>
       </div>

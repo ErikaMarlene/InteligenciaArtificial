@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { HouseProps } from "@/types";
-import CustomButton from "./CustomButton";
 import { HouseDetails } from ".";
+import CustomButton from "./CustomButton";
 
 interface HouseCardProps {
   house: HouseProps;

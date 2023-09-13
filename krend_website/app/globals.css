@@ -49,6 +49,10 @@
   @apply text-[27px] text-black-100 font-light mt-5;
 }
 
+.hero__subtitle_s {
+  @apply xl:text-[40px] sm:text-[64px] text-[50px] font-extrabold;
+}
+
 .hero__title_s {
   @apply 2xl:text-[70px] xl:text-[60px] sm:text-[64px] text-[50px] font-extrabold;
 }

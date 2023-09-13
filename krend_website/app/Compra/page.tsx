@@ -6,7 +6,17 @@ import {
   ShowMore,
   LoadingSpinner,
 } from "@/components";
-import { Street, MSZoning, Alley, Precio } from "@/constants";
+import {
+  Street,
+  MSZoning,
+  Alley,
+  Precio,
+  LotShapeOptions,
+  HouseStyleOptions,
+  OverallCondOptions,
+  SaleConditionOptions,
+  HeatingOptions,
+} from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
 
@@ -20,6 +30,11 @@ export default function Home() {
   const [mszoning, setMszoning] = useState("");
   const [alley, setAlley] = useState("");
   const [precio, setPrecio] = useState("");
+  const [lotShapeOptions, setLotShapeOptions] = useState("");
+  const [houseStyleOptions, setHouseStyleOptions] = useState("");
+  const [overallCondOptions, setOverallCondOptions] = useState("");
+  const [saleConditionOptions, setSaleConditionOptions] = useState("");
+  const [heatingOptions, setHeatingOptions] = useState("");
   //pagination state
   const [limit, setLimit] = useState(10);
 
@@ -32,6 +47,11 @@ export default function Home() {
         mszoning: mszoning || "?",
         alley: alley || "?",
         precio: precio || "desc",
+        lotShapeOptions: lotShapeOptions || "?",
+        houseStyleOptions: houseStyleOptions || "?",
+        overallCondOptions: overallCondOptions || "?",
+        saleConditionOptions: saleConditionOptions || "?",
+        heatingOptions: heatingOptions || "?",
       });
       setAllHouses(result);
     } catch (error) {
@@ -42,7 +62,18 @@ export default function Home() {
   };
   useEffect(() => {
     getHouses();
-  }, [street, limit, mszoning, alley, precio]);
+  }, [
+    street,
+    limit,
+    mszoning,
+    alley,
+    precio,
+    lotShapeOptions,
+    houseStyleOptions,
+    overallCondOptions,
+    saleConditionOptions,
+    heatingOptions,
+  ]);
 
   const isDataEmpty =
     !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
@@ -58,8 +89,14 @@ export default function Home() {
         </div>
 
         <div className="home__filters">
-          {/* <SearchBar setManufacturer={setManufacturer} setModel={setModel} /> */}
-
+        <div className="home__filter-container">
+            <p className="text-xl font-semibold">Ordenar por:</p>
+            <CustomFilter
+              title="Precio"
+              options={Precio}
+              setFilter={setPrecio}
+            />
+          </div>
           <div className="home__filter-container">
             <p className="text-xl font-semibold">Filtrar por:</p>
 
@@ -73,19 +110,37 @@ export default function Home() {
               options={Street}
               setFilter={setStreet}
             />
-                        <CustomFilter
-              title="Alley"
-              options={Alley}
-              setFilter={setAlley}
-            />
-            <p className="text-xl font-semibold">Ordenar por:</p>
+            <CustomFilter title="Alley" options={Alley} setFilter={setAlley} />
             <CustomFilter
-              title="Precio"
-              options={Precio}
-              setFilter={setPrecio}
+              title="LotShapeOptions"
+              options={LotShapeOptions}
+              setFilter={setLotShapeOptions}
+            />
+            <CustomFilter
+              title="HouseStyleOptions"
+              options={HouseStyleOptions}
+              setFilter={setHouseStyleOptions}
+            />
+            <CustomFilter
+              title="OverallCondOptions"
+              options={OverallCondOptions}
+              setFilter={setOverallCondOptions}
+            />
+            <CustomFilter
+              title="SaleConditionOptions"
+              options={SaleConditionOptions}
+              setFilter={setSaleConditionOptions}
+            />
+            <CustomFilter
+              title="HeatingOptions"
+              options={HeatingOptions}
+              setFilter={setHeatingOptions}
             />
           </div>
+
+          
         </div>
+
         {loading ? (
           <div className="mt-16 w-full flex-center">
             <LoadingSpinner />

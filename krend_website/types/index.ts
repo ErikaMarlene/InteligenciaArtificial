@@ -69,9 +69,6 @@ export interface HouseProps{
   HeatingQC: string;
   CentralAir: string;
   Electrical: string;
-  // NO USAR NÚMEROS
-  // 1stFlrSF: number;
-  // 2ndFlrSF: number;
   LowQualFinSF: number;
   GrLivArea: number;
   BsmtFullBath: number;
@@ -96,8 +93,6 @@ export interface HouseProps{
   WoodDeckSF: number;
   OpenPorchSF: number;
   EnclosedPorch: number;
-  // NO USAR NÚMEROS
-  // 3SsnPorch: number;
   ScreenPorch: number;
   PoolArea: number;
   PoolQC: string;
@@ -109,6 +104,11 @@ export interface HouseProps{
   SaleType: string;
   SaleCondition: string;
   SalePrice: number;
+  // NO USAR NÚMEROS
+  // 3SsnPorch: number;
+  // NO USAR NÚMEROS
+  // 1stFlrSF: number;
+  // 2ndFlrSF: number;
 }
 
 // checar 2:27:54
@@ -128,6 +128,11 @@ export interface PropsFiltros {
   mszoning?: string;
   alley?: string;
   precio?: string;
+  lotShapeOptions?: string;
+  houseStyleOptions?: string;
+  overallCondOptions?: string;
+  saleConditionOptions?: string;
+  heatingOptions?: string;
 }
 export interface HomeProps {
   searchParams: FilterProps;
