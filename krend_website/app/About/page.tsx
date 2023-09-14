@@ -2,7 +2,7 @@ import React from 'react';
 import Image from "next/image";
 
 const About = () => {
-  return (
+  return (  
     <div className='hero'>
       <div className="flex-1 pt-36 padding-x">
       <h1 className="text-6xl font-bold text-center text-blue-800 my-10">

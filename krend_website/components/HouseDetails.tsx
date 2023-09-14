@@ -72,7 +72,7 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
                     <a href="/CompraExito">                      
                     <CustomButton
                       title="Comprar"
-                      containerStyles="bg-violeta text-white rounded-full mt-10"
+                      containerStyles="bg-violeta text-white rounded-full w-full"
 
                     />
                     </a>

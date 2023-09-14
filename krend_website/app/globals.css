@@ -34,7 +34,13 @@
 
 .custom-btn {
   @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+  transition: transform 0.2s ease;
 }
+
+.custom-btn:hover {
+  transform: scale(1.1);
+}
+
 /* END: General styles */
 
 /* START: Hero styles */

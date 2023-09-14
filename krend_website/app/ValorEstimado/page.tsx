@@ -15,7 +15,7 @@ const ValorEstimado = () => {
       }}
     >
       <div className="hero">
-        <div className="hero__image-container_s">
+        <div className="hero__image-container">
           <div className="hero__image_s">
             <Image
               src="/blue_house.png"
@@ -33,6 +33,7 @@ const ValorEstimado = () => {
           <p className="hero__text text-justify mt-4">
             Tomando en cuenta todas las características de tu propiedad, tu casa tiene
             un valor estimado de:
+            
           </p>
 
 {/* JALAR PRECIO DEL STATE DE LA API */}
