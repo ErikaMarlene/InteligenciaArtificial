@@ -306,9 +306,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,LotArea:e.target.value})} name="LotArea" className="form-control"
                 />
               </div>
               
@@ -317,8 +315,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Street:e.target.value})} name="Street" className="form-control"
               >
                 {Street.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -332,8 +329,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Alley:e.target.value})} name="Alley" className="form-control"
               >
                 {Alley.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -347,8 +343,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,LotShape:e.target.value})} name="LotShape" className="form-control"
               >
                 {LotShapeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -362,8 +357,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,LandContour:e.target.value})} name="LandContour" className="form-control"
               >
                 {LandContourOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -377,8 +371,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Utilities:e.target.value})} name="Utilities" className="form-control"
               >
                 {UtilitiesOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -392,8 +385,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,LotConfig:e.target.value})} name="LotConfig" className="form-control"
               >
                 {LotConfigOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -407,8 +399,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,LandSlope:e.target.value})} name="LandSlope" className="form-control"
               >
                 {LandSlopeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -422,8 +413,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Neighborhood:e.target.value})} name="Neighborhood" className="form-control"
               >
                 {NeighborhoodOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -437,8 +427,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Condition1:e.target.value})} name="Condition1" className="form-control"
               >
                 {Condition1Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -452,8 +441,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Condition2:e.target.value})} name="Condition2" className="form-control"
               >
                 {Condition2Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -467,8 +455,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BldgType:e.target.value})} name="BldgType" className="form-control"
               >
                 {BldgTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -482,8 +469,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,HouseStyle:e.target.value})} name="HouseStyle" className="form-control"
               >
                 {HouseStyleOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -497,8 +483,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,OverallQual:e.target.value})} name="OverallQual" className="form-control"
               >
                 {OverallQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -512,8 +497,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,OverallCond:e.target.value})} name="OverallCond" className="form-control"
               >
                 {OverallCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -532,9 +516,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,YearBuilt:e.target.value})} name="YearBuilt" className="form-control"
                 />
               </div>
 
@@ -547,9 +529,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,YearRemodAdd:e.target.value})} name="YearRemodAdd" className="form-control"
                 />
               </div>
 
@@ -557,8 +537,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,RoofStyle:e.target.value})} name="RoofStyle" className="form-control"
               >
                 {RoofStyleOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -572,8 +551,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,RoofMatl:e.target.value})} name="RoofMatl" className="form-control"
               >
                 {RoofMatlOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -587,8 +565,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Exterior1st:e.target.value})} name="Exterior1st" className="form-control"
               >
                 {Exterior1stOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -602,8 +579,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Exterior2nd:e.target.value})} name="Exterior2nd" className="form-control"
               >
                 {Exterior2ndOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -617,8 +593,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,MasVnrType:e.target.value})} name="MasVnrType" className="form-control"
               >
                 {MasVnrTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -637,9 +612,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,MasVnrArea:e.target.value})} name="MasVnrArea" className="form-control"
                 />
               </div>
 
@@ -647,8 +620,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,ExterQual:e.target.value})} name="ExterQual" className="form-control"
               >
                 {ExterQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -662,8 +634,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,ExterCond:e.target.value})} name="ExterCond" className="form-control"
               >
                 {ExterCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -677,8 +648,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Foundation:e.target.value})} name="Foundation" className="form-control"
               >
                 {FoundationOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -692,8 +662,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BsmtQual:e.target.value})} name="BsmtQual" className="form-control"
               >
                 {BsmtQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -707,8 +676,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BsmtCond:e.target.value})} name="BsmtCond" className="form-control"
               >
                 {BsmtCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -722,8 +690,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BsmtExposure:e.target.value})} name="BsmtExposure" className="form-control"
               >
                 {BsmtExposureOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -737,8 +704,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BsmtFinType1:e.target.value})} name="BsmtFinType1" className="form-control"
               >
                 {BsmtFinType1Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -757,9 +723,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BsmtFinSF1:e.target.value})} name="BsmtFinSF1" className="form-control"
                 />
               </div>
 
@@ -767,8 +731,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,BsmtFinType2:e.target.value})} name="BsmtFinType2" className="form-control"
               >
                 {BsmtFinType2Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -787,9 +750,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BsmtFinSF2:e.target.value})} name="BsmtFinSF2" className="form-control"
                 />
               </div>
 
@@ -802,9 +763,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BsmtUnfSF:e.target.value})} name="BsmtUnfSF" className="form-control"
                 />
               </div>
 
@@ -817,9 +776,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,TotalBsmtSF:e.target.value})} name="TotalBsmtSF" className="form-control"
                 />
               </div>
 
@@ -827,8 +784,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Heating:e.target.value})} name="Heating" className="form-control"
               >
                 {HeatingOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -842,8 +798,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,HeatingQC:e.target.value})} name="HeatingQC" className="form-control"
               >
                 {HeatingQCOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -857,8 +812,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,CentralAir:e.target.value})} name="CentralAir" className="form-control"
               >
                 {CentralAirOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -872,8 +826,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Electrical:e.target.value})} name="Electrical" className="form-control"
               >
                 {ElectricalOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -892,9 +845,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,FirstFlrSF:e.target.value})} name="FirstFlSF" className="form-control"
                 />
               </div>
 
@@ -907,9 +858,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,SecondFlrSF:e.target.value})} name="SecondFlrSF" className="form-control"
                 />
               </div>
 
@@ -922,9 +871,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,LowQualFinSF:e.target.value})} name="LowQualFinSF" className="form-control"
                 />
               </div>
 
@@ -937,9 +884,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,GrLivArea:e.target.value})} name="GrLivArea" className="form-control"
                 />
               </div>
 
@@ -952,9 +897,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BsmtFullBath:e.target.value})} name="BsmtFullBath" className="form-control"
                 />
               </div>
 
@@ -967,9 +910,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BsmtHalfBath:e.target.value})} name="BsmtHalfBath" className="form-control"
                 />
               </div>
 
@@ -982,9 +923,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,FullBath:e.target.value})} name="FullBath" className="form-control"
                 />
               </div>
 
@@ -997,9 +936,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,HalfBath:e.target.value})} name="HalfBath" className="form-control"
                 />
               </div>
 
@@ -1012,9 +949,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,BedroomAbvGr:e.target.value})} name="BedroomAbvGr" className="form-control"
                 />
               </div>
 
@@ -1027,9 +962,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,KitchenAbvGr:e.target.value})} name="KitchenAbvGr" className="form-control"
                 />
               </div>
 
@@ -1037,8 +970,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,KitchenQual:e.target.value})} name="KitchenQual" className="form-control"
               >
                 {KitchenQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1057,9 +989,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,TotRmsAbvGrd:e.target.value})} name="TotRmsAbvGrd" className="form-control"
                 />
               </div>
 
@@ -1067,8 +997,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Functional:e.target.value})} name="Functional" className="form-control"
               >
                 {FunctionalOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1087,9 +1016,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,Fireplaces:e.target.value})} name="Fireplaces" className="form-control"
                 />
               </div>
 
@@ -1097,8 +1024,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,FireplaceQu:e.target.value})} name="FireplaceQu" className="form-control"
               >
                 {FireplaceQuOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1112,8 +1038,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,GarageType:e.target.value})} name="GarageType" className="form-control"
               >
                 {GarageTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1132,9 +1057,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,GarageYrBlt:e.target.value})} name="GarageYrBlt" className="form-control"
                 />
               </div>
 
@@ -1142,8 +1065,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,GarageFinish:e.target.value})} name="GarageFinish" className="form-control"
               >
                 {GarageFinishOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1162,9 +1084,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,GarageCars:e.target.value})} name="GarageCars" className="form-control"
                 />
               </div>
 
@@ -1177,9 +1097,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,GarageArea:e.target.value})} name="GarageArea" className="form-control"
                 />
               </div>
 
@@ -1187,8 +1105,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,GarageQual:e.target.value})} name="GarageQual" className="form-control"
               >
                 {GarageQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1202,8 +1119,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,GarageCond:e.target.value})} name="GarageCond" className="form-control"
               >
                 {GarageCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1217,8 +1133,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,PavedDrive:e.target.value})} name="PavedDrive" className="form-control"
               >
                 {PavedDriveOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1237,9 +1152,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,WoodDeckSF:e.target.value})} name="WoodDeckSF" className="form-control"
                 />
               </div>
 
@@ -1252,9 +1165,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,OpenPorchSF:e.target.value})} name="OpenPorchSF" className="form-control"
                 />
               </div>
 
@@ -1267,9 +1178,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,EnclosedPorch:e.target.value})} name="EnclosedPorch" className="form-control"
                 />
               </div>
 
@@ -1282,9 +1191,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,ThreeSsnPorch:e.target.value})} name="ThreeSsnPorch" className="form-control"
                 />
               </div>
 
@@ -1297,9 +1204,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,ScreenPorch:e.target.value})} name="ScreenPorch" className="form-control"
                 />
               </div>
 
@@ -1312,9 +1217,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,PoolArea:e.target.value})} name="PoolArea" className="form-control"
                 />
               </div>
 
@@ -1322,8 +1225,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,PoolQC:e.target.value})} name="PoolQC" className="form-control"
               >
                 {PoolQCOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1337,8 +1239,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,Fence:e.target.value})} name="Fence" className="form-control"
               >
                 {FenceOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1352,8 +1253,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,MiscFeature:e.target.value})} name="MiscFeature" className="form-control"
               >
                 {MiscFeatureOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1372,9 +1272,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,MiscVal:e.target.value})} name="MiscVal" className="form-control"
                 />
               </div>
 
@@ -1387,9 +1285,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,MoSold:e.target.value})} name="MoSold" className="form-control"
                 />
               </div>
 
@@ -1402,9 +1298,7 @@ function formulario () {
                   />
                 </div>
                 <TextInput
-                  id="small"
-                  sizing="sm"
-                  type="text"
+                  type="text" onChange={(e)=>setState({...state,YrSold:e.target.value})} name="YrSold" className="form-control"
                 />
               </div>
 
@@ -1412,8 +1306,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,SaleType:e.target.value})} name="SaleType" className="form-control"
               >
                 {SaleTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
@@ -1427,8 +1320,7 @@ function formulario () {
               <div className="mb-2 block">
               </div>
               <Select
-                id="venta"
-                required
+                onChange={(e)=>setState({...state,SaleCondition:e.target.value})} name="SaleCondition" className="form-control"
               >
                 {SaleConditionOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
