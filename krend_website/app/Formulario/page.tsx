@@ -1,7 +1,10 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
-import { DarkThemeToggle, Flowbite, Label, Select, Card, FileInput, TextInput } from "flowbite-react";
+import React, { Component, ChangeEvent, FormEvent } from "react";
+
+import { Label, Select } from "flowbite-react";
+import { FileInput, TextInput } from "flowbite-react";
 
 import {
   Street,
@@ -54,46 +57,122 @@ import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
 import CustomButton from "@/components/CustomButton";
 
-const formulario = () => {
-  const [allHouses, setAllHouses] = useState([]);
-  const [loading, setLoading] = useState(false);
+function formulario() {
 
-  //search states
+  async function comunica() {
+    // Consumiendo el servicio POST
 
-  //filter states
-  const [street, setStreet] = useState("");
-  const [mszoning, setMszoning] = useState("");
-  const [alley, setAlley] = useState("");
-  //pagination state
-  const [limit, setLimit] = useState(10);
+    const respuesta = await fetch("http://localhost:8081/casas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state), // Envía el objeto state completo
+    });
 
-  const getHouses = async () => {
-    setLoading(true);
-    try {
-      const result = await fetchHouses({
-        street: street || "",
-        limit: limit || 10,
-        mszoning: mszoning || "",
-        alley: alley || "",
-      });
-      setAllHouses(result);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    // Imprimir lo que responde el servidor
+    const responseData = await respuesta.json();
+    console.log(responseData);
+  }
+
+  const [state, setState] = useState({
+    id: "",
+    MSZoning: "",
+    LotFrontage: "",
+    LotArea: "",
+    Street: "",
+    Alley: "",
+    LotShape: "",
+    LandContour: "",
+    Utilities: "",
+    LotConfig: "",
+    LandSlope: "",
+    Neighborhood: "",
+    Condition1: "",
+    Condition2: "",
+    BldgType: "",
+    HouseStyle: "",
+    OverallQual: "",
+    OverallCond: "",
+    YearBuilt: "",
+    YearRemodAdd: "",
+    RoofStyle: "",
+    RoofMatl: "",
+    Exterior1st: "",
+    Exterior2nd: "",
+    MasVnrType: "",
+    MasVnrArea: "",
+    ExterQual: "",
+    ExterCond: "",
+    Foundation: "",
+    BsmtQual: "",
+    BsmtCond: "",
+    BsmtExposure: "",
+    BsmtFinType1: "",
+    BsmtFinSF1: "",
+    BsmtFinType2: "",
+    BsmtFinSF2: "",
+    BsmtUnfSF: "",
+    TotalBsmtSF: "",
+    Heating: "",
+    HeatingQC: "",
+    CentralAir: "",
+    Electrical: "",
+    FirstFlrSF: "",
+    SecondFlrSF: "",
+    LowQualFinSF: "",
+    GrLivArea: "",
+    BsmtFullBath: "",
+    BsmtHalfBath: "",
+    FullBath: "",
+    HalfBath: "",
+    BedroomAbvGr: "",
+    KitchenAbvGr: "",
+    KitchenQual: "",
+    TotRmsAbvGrd: "",
+    Functional: "",
+    Fireplaces: "",
+    FireplaceQu: "",
+    GarageType: "",
+    GarageYrBlt: "",
+    GarageFinish: "",
+    GarageCars: "",
+    GarageArea: "",
+    GarageQual: "",
+    GarageCond: "",
+    PavedDrive: "",
+    WoodDeckSF: "",
+    OpenPorchSF: "",
+    EnclosedPorch: "",
+    ThreeSsnPorch: "",
+    ScreenPorch: "",
+    PoolArea: "",
+    PoolQC: "",
+    Fence: "",
+    MiscFeature: "",
+    MiscVal: "",
+    MoSold: "",
+    YrSold: "",
+    SaleType: "",
+    SaleCondition: "",
+    SalePrice: "",
+    //saleConditionValue: "", // Cambia el nombre de la propiedad en el estado
+    //MiscVal: ""
+  });
   useEffect(() => {
-    getHouses();
-  }, [street, limit, mszoning, alley]);
+    localStorage.setItem("MiscVal", "");
+  }, []);
 
-  const isDataEmpty =
-    !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
+  //ComponentDidUpdate
+  useEffect(() => {
+    if (state.MiscVal !== "") {
+      localStorage.setItem("MiscVal", state.MiscVal);
+      console.log(localStorage.getItem("saleCondition"));
+      console.log(localStorage.getItem("MiscVal"));
+    }
+  });
 
   return (
-    <Flowbite>
-
-    
     <div style={{ position: "relative", zIndex: 1 }}>
       {/* Imagen de fondo */}
       <div
@@ -105,17 +184,17 @@ const formulario = () => {
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           minHeight: "100vh",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          position: "absolute", // Establecer la posición absoluta
+          top: 0, // Anclar arriba
+          left: 0, // Anclar a la izquierda
+          right: 0, // Anclar a la derecha
+          bottom: 0, // Anclar abajo
           filter: "blur(0px)",
         }}
       ></div>
 
       <div
-        className="flex-1 pt-28 pb-1 padding-x"
+        className="flex-1 pt-36 padding-x"
         style={{
           position: "relative",
           zIndex: 1,
@@ -123,17 +202,23 @@ const formulario = () => {
           maxWidth: "800px",
         }}
       >
-        <h1 className="hero__title text-left">
-          ¡Valua tu casa de forma rápida y sencilla!
+        <h1 className="hero__title">
+          Valua tu casa de forma rápida y sencilla!
         </h1>
 
         <p className="hero__subtitle">
-          Revisa y llena el siguiente formulario para poder tener el valor de tu
+          Revisa y llena el siguiente formulario para poder tener un valor de tu
           vivienda.
         </p>
-        <DarkThemeToggle/>
-        <Card className="max-w-md place-content-center">
-          <div className="my-2">
+
+        <form
+          className="card-body"
+          onSubmit={(e) => {
+            e.preventDefault();
+            comunica(); // Llama a la función comunica cuando se envía el formulario
+          }}
+        >
+          <div className="mt-8">
             {/*Datos personales */}
 
             <div className="flex max-w-md flex-col gap-4">
@@ -160,16 +245,22 @@ const formulario = () => {
             </div>
 
             {/*Se inicia para seleccionar opciones predefinidas
-           MSZoning*/}
+            MSZoning*/}
 
-            <div className="max-w-md my-2" id="select" gap-4>
-              <div className="mb-2 block my-2">
+            <div className="max-w-md" id="select">
+              <div className="mb-2 block">
                 <Label
-                  htmlFor="mszoning"
+                  htmlFor="MSZoning"
                   value="Selecciona y llena con la información que corresponde con tu vivienda"
                 />
               </div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, MSZoning: e.target.value })
+                }
+                name="MSZoning"
+                className="form-control"
+              >
                 {MSZoning.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -185,7 +276,14 @@ const formulario = () => {
                     value="Pies lineales de calle conectada a la propiedad:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, LotFrontage: e.target.value })
+                  }
+                  name="LotFrontage"
+                  className="form-control"
+                />
               </div>
 
               {/*LotArea */}
@@ -196,12 +294,23 @@ const formulario = () => {
                     value="Tamaño del lote en pies cuadrados:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, LotArea: e.target.value })
+                  }
+                  name="LotArea"
+                  className="form-control"
+                />
               </div>
 
               {/*Street */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) => setState({ ...state, Street: e.target.value })}
+                name="Street"
+                className="form-control"
+              >
                 {Street.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -211,7 +320,11 @@ const formulario = () => {
 
               {/*Alley */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) => setState({ ...state, Alley: e.target.value })}
+                name="Alley"
+                className="form-control"
+              >
                 {Alley.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -221,7 +334,13 @@ const formulario = () => {
 
               {/*LotShape */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, LotShape: e.target.value })
+                }
+                name="LotShape"
+                className="form-control"
+              >
                 {LotShapeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -231,7 +350,13 @@ const formulario = () => {
 
               {/*LandContour */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, LandContour: e.target.value })
+                }
+                name="LandContour"
+                className="form-control"
+              >
                 {LandContourOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -241,7 +366,13 @@ const formulario = () => {
 
               {/*Utilities */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Utilities: e.target.value })
+                }
+                name="Utilities"
+                className="form-control"
+              >
                 {UtilitiesOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -251,7 +382,13 @@ const formulario = () => {
 
               {/*LotConfig */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, LotConfig: e.target.value })
+                }
+                name="LotConfig"
+                className="form-control"
+              >
                 {LotConfigOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -261,7 +398,13 @@ const formulario = () => {
 
               {/*LandSlope */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, LandSlope: e.target.value })
+                }
+                name="LandSlope"
+                className="form-control"
+              >
                 {LandSlopeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -271,7 +414,13 @@ const formulario = () => {
 
               {/*Neighborhood */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Neighborhood: e.target.value })
+                }
+                name="Neighborhood"
+                className="form-control"
+              >
                 {NeighborhoodOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -281,7 +430,13 @@ const formulario = () => {
 
               {/*Condition1 */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Condition1: e.target.value })
+                }
+                name="Condition1"
+                className="form-control"
+              >
                 {Condition1Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -291,7 +446,13 @@ const formulario = () => {
 
               {/*Condition2 */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Condition2: e.target.value })
+                }
+                name="Condition2"
+                className="form-control"
+              >
                 {Condition2Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -301,7 +462,13 @@ const formulario = () => {
 
               {/*BlsgType */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BldgType: e.target.value })
+                }
+                name="BldgType"
+                className="form-control"
+              >
                 {BldgTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -311,7 +478,13 @@ const formulario = () => {
 
               {/*HouseStyle */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, HouseStyle: e.target.value })
+                }
+                name="HouseStyle"
+                className="form-control"
+              >
                 {HouseStyleOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -321,7 +494,13 @@ const formulario = () => {
 
               {/*OverallQual */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, OverallQual: e.target.value })
+                }
+                name="OverallQual"
+                className="form-control"
+              >
                 {OverallQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -331,7 +510,13 @@ const formulario = () => {
 
               {/*OverallCond */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, OverallCond: e.target.value })
+                }
+                name="OverallCond"
+                className="form-control"
+              >
                 {OverallCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -347,7 +532,14 @@ const formulario = () => {
                     value="Año de construcción original:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, YearBuilt: e.target.value })
+                  }
+                  name="YearBuilt"
+                  className="form-control"
+                />
               </div>
 
               {/*YearRemodAdd */}
@@ -358,12 +550,25 @@ const formulario = () => {
                     value="Año de remodelación (Si no hay remodelación, es la misma que la fecha de construcción):"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, YearRemodAdd: e.target.value })
+                  }
+                  name="YearRemodAdd"
+                  className="form-control"
+                />
               </div>
 
               {/*RoofStyle */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, RoofStyle: e.target.value })
+                }
+                name="RoofStyle"
+                className="form-control"
+              >
                 {RoofStyleOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -373,7 +578,13 @@ const formulario = () => {
 
               {/*RoofMatl */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, RoofMatl: e.target.value })
+                }
+                name="RoofMatl"
+                className="form-control"
+              >
                 {RoofMatlOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -383,7 +594,13 @@ const formulario = () => {
 
               {/*Exterior1st */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Exterior1st: e.target.value })
+                }
+                name="Exterior1st"
+                className="form-control"
+              >
                 {Exterior1stOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -393,7 +610,13 @@ const formulario = () => {
 
               {/*Exterior2nd */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Exterior2nd: e.target.value })
+                }
+                name="Exterior2nd"
+                className="form-control"
+              >
                 {Exterior2ndOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -403,7 +626,13 @@ const formulario = () => {
 
               {/*MasVnrType */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, MasVnrType: e.target.value })
+                }
+                name="MasVnrType"
+                className="form-control"
+              >
                 {MasVnrTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -419,12 +648,25 @@ const formulario = () => {
                     value="Área de revestimiento de mampostería en pies:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, MasVnrArea: e.target.value })
+                  }
+                  name="MasVnrArea"
+                  className="form-control"
+                />
               </div>
 
               {/*ExterQual */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, ExterQual: e.target.value })
+                }
+                name="ExterQual"
+                className="form-control"
+              >
                 {ExterQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -434,7 +676,13 @@ const formulario = () => {
 
               {/*ExterCond */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, ExterCond: e.target.value })
+                }
+                name="ExterCond"
+                className="form-control"
+              >
                 {ExterCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -444,7 +692,13 @@ const formulario = () => {
 
               {/*Foundation */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Foundation: e.target.value })
+                }
+                name="Foundation"
+                className="form-control"
+              >
                 {FoundationOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -454,7 +708,13 @@ const formulario = () => {
 
               {/*BsmtQual */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BsmtQual: e.target.value })
+                }
+                name="BsmtQual"
+                className="form-control"
+              >
                 {BsmtQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -464,7 +724,13 @@ const formulario = () => {
 
               {/*BsmtCond */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BsmtCond: e.target.value })
+                }
+                name="BsmtCond"
+                className="form-control"
+              >
                 {BsmtCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -474,7 +740,13 @@ const formulario = () => {
 
               {/*BsmtExposure */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BsmtExposure: e.target.value })
+                }
+                name="BsmtExposure"
+                className="form-control"
+              >
                 {BsmtExposureOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -484,7 +756,13 @@ const formulario = () => {
 
               {/*BsmtFinType1 */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BsmtFinType1: e.target.value })
+                }
+                name="BsmtFinType1"
+                className="form-control"
+              >
                 {BsmtFinType1Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -500,12 +778,25 @@ const formulario = () => {
                     value="Pies cuadrados de área terminada del tipo 1 del sótano:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BsmtFinSF1: e.target.value })
+                  }
+                  name="BsmtFinSF1"
+                  className="form-control"
+                />
               </div>
 
               {/*BsmtFinType2 */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, BsmtFinType2: e.target.value })
+                }
+                name="BsmtFinType2"
+                className="form-control"
+              >
                 {BsmtFinType2Options.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -521,7 +812,14 @@ const formulario = () => {
                     value="Pies cuadrados de área terminada del tipo 2 del sótano:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BsmtFinSF2: e.target.value })
+                  }
+                  name="BsmtFinSF2"
+                  className="form-control"
+                />
               </div>
 
               {/*BsmtUnfSF */}
@@ -532,7 +830,14 @@ const formulario = () => {
                     value="Pies cuadrados sin terminar del sótano:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BsmtUnfSF: e.target.value })
+                  }
+                  name="BsmtUnfSF"
+                  className="form-control"
+                />
               </div>
 
               {/*TotalBsmtSF */}
@@ -543,12 +848,25 @@ const formulario = () => {
                     value="Pies cuadrados totales del sótano:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, TotalBsmtSF: e.target.value })
+                  }
+                  name="TotalBsmtSF"
+                  className="form-control"
+                />
               </div>
 
               {/*Heating */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Heating: e.target.value })
+                }
+                name="Heating"
+                className="form-control"
+              >
                 {HeatingOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -558,7 +876,13 @@ const formulario = () => {
 
               {/*HeatingQC */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, HeatingQC: e.target.value })
+                }
+                name="HeatingQC"
+                className="form-control"
+              >
                 {HeatingQCOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -568,7 +892,13 @@ const formulario = () => {
 
               {/*CentralAir */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, CentralAir: e.target.value })
+                }
+                name="CentralAir"
+                className="form-control"
+              >
                 {CentralAirOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -578,7 +908,13 @@ const formulario = () => {
 
               {/*Electrical */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Electrical: e.target.value })
+                }
+                name="Electrical"
+                className="form-control"
+              >
                 {ElectricalOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -594,7 +930,14 @@ const formulario = () => {
                     value="Pies cuadrados del primer piso:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, FirstFlrSF: e.target.value })
+                  }
+                  name="FirstFlSF"
+                  className="form-control"
+                />
               </div>
 
               {/*2ndFlrSF */}
@@ -605,7 +948,14 @@ const formulario = () => {
                     value="Pies cuadrados del segundo piso:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, SecondFlrSF: e.target.value })
+                  }
+                  name="SecondFlrSF"
+                  className="form-control"
+                />
               </div>
 
               {/*LowQualFinSF */}
@@ -616,7 +966,14 @@ const formulario = () => {
                     value="Pies cuadrados de área termianda de baja calidad:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, LowQualFinSF: e.target.value })
+                  }
+                  name="LowQualFinSF"
+                  className="form-control"
+                />
               </div>
 
               {/*GrLivArea */}
@@ -627,7 +984,14 @@ const formulario = () => {
                     value="Pies cuadrados de área habitable sobre el nivel del suelo:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, GrLivArea: e.target.value })
+                  }
+                  name="GrLivArea"
+                  className="form-control"
+                />
               </div>
 
               {/*BsmtFullBath */}
@@ -638,7 +1002,14 @@ const formulario = () => {
                     value="Baños completos en el sótano:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BsmtFullBath: e.target.value })
+                  }
+                  name="BsmtFullBath"
+                  className="form-control"
+                />
               </div>
 
               {/*BsmtHalfBath */}
@@ -646,7 +1017,14 @@ const formulario = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="small" value="Medios baños en el sótano:" />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BsmtHalfBath: e.target.value })
+                  }
+                  name="BsmtHalfBath"
+                  className="form-control"
+                />
               </div>
 
               {/*FullBath */}
@@ -657,7 +1035,14 @@ const formulario = () => {
                     value="Baños completos sobre el nivel del suelo:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, FullBath: e.target.value })
+                  }
+                  name="FullBath"
+                  className="form-control"
+                />
               </div>
 
               {/*HalfBath */}
@@ -668,7 +1053,14 @@ const formulario = () => {
                     value="Medios baños sobre el nivel del suelo:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, HalfBath: e.target.value })
+                  }
+                  name="HalfBath"
+                  className="form-control"
+                />
               </div>
 
               {/*Bedroom */}
@@ -679,7 +1071,14 @@ const formulario = () => {
                     value="Dormitorios sobre el nivel del suelo:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, BedroomAbvGr: e.target.value })
+                  }
+                  name="BedroomAbvGr"
+                  className="form-control"
+                />
               </div>
 
               {/*Kitchen */}
@@ -690,12 +1089,25 @@ const formulario = () => {
                     value="Cocinas sobre el nivel del suelo:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, KitchenAbvGr: e.target.value })
+                  }
+                  name="KitchenAbvGr"
+                  className="form-control"
+                />
               </div>
 
               {/*KitchenQual */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, KitchenQual: e.target.value })
+                }
+                name="KitchenQual"
+                className="form-control"
+              >
                 {KitchenQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -711,12 +1123,25 @@ const formulario = () => {
                     value="Total de habitaciones sobre el nivel del suelo (No incluye baños):"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, TotRmsAbvGrd: e.target.value })
+                  }
+                  name="TotRmsAbvGrd"
+                  className="form-control"
+                />
               </div>
 
               {/*Functional */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, Functional: e.target.value })
+                }
+                name="Functional"
+                className="form-control"
+              >
                 {FunctionalOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -729,12 +1154,25 @@ const formulario = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="small" value="Número de chimeneas:" />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, Fireplaces: e.target.value })
+                  }
+                  name="Fireplaces"
+                  className="form-control"
+                />
               </div>
 
               {/*FireplaceQu */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, FireplaceQu: e.target.value })
+                }
+                name="FireplaceQu"
+                className="form-control"
+              >
                 {FireplaceQuOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -744,7 +1182,13 @@ const formulario = () => {
 
               {/*GarageType */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, GarageType: e.target.value })
+                }
+                name="GarageType"
+                className="form-control"
+              >
                 {GarageTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -760,12 +1204,25 @@ const formulario = () => {
                     value="Año de contrucción del garage:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, GarageYrBlt: e.target.value })
+                  }
+                  name="GarageYrBlt"
+                  className="form-control"
+                />
               </div>
 
               {/*GarageFinish */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, GarageFinish: e.target.value })
+                }
+                name="GarageFinish"
+                className="form-control"
+              >
                 {GarageFinishOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -781,7 +1238,14 @@ const formulario = () => {
                     value="Tamaño del garaje en capacidad de automóviles:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, GarageCars: e.target.value })
+                  }
+                  name="GarageCars"
+                  className="form-control"
+                />
               </div>
 
               {/*GarageArea */}
@@ -792,12 +1256,25 @@ const formulario = () => {
                     value="Tamaño del garaje en pies cuadrados:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, GarageArea: e.target.value })
+                  }
+                  name="GarageArea"
+                  className="form-control"
+                />
               </div>
 
               {/*GarageQual */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, GarageQual: e.target.value })
+                }
+                name="GarageQual"
+                className="form-control"
+              >
                 {GarageQualOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -807,7 +1284,13 @@ const formulario = () => {
 
               {/*GarageCond */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, GarageCond: e.target.value })
+                }
+                name="GarageCond"
+                className="form-control"
+              >
                 {GarageCondOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -817,7 +1300,13 @@ const formulario = () => {
 
               {/*PavedDrive */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, PavedDrive: e.target.value })
+                }
+                name="PavedDrive"
+                className="form-control"
+              >
                 {PavedDriveOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -833,7 +1322,14 @@ const formulario = () => {
                     value="Pies cuadrados de área de terraza de madera:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, WoodDeckSF: e.target.value })
+                  }
+                  name="WoodDeckSF"
+                  className="form-control"
+                />
               </div>
 
               {/*OpenPorchSF */}
@@ -844,7 +1340,14 @@ const formulario = () => {
                     value="Pies cuadrados de área de porche abierto:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, OpenPorchSF: e.target.value })
+                  }
+                  name="OpenPorchSF"
+                  className="form-control"
+                />
               </div>
 
               {/*EnclosedPorch */}
@@ -855,7 +1358,14 @@ const formulario = () => {
                     value="Pies cuadrados de área de porche cerrado:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, EnclosedPorch: e.target.value })
+                  }
+                  name="EnclosedPorch"
+                  className="form-control"
+                />
               </div>
 
               {/*3SsnPorch */}
@@ -866,7 +1376,14 @@ const formulario = () => {
                     value="Área de Porche de Tres Estaciones en Pies Cuadrados:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, ThreeSsnPorch: e.target.value })
+                  }
+                  name="ThreeSsnPorch"
+                  className="form-control"
+                />
               </div>
 
               {/*ScreenPorch */}
@@ -877,7 +1394,14 @@ const formulario = () => {
                     value="Área de Porche cubierto en Pies Cuadrados:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, ScreenPorch: e.target.value })
+                  }
+                  name="ScreenPorch"
+                  className="form-control"
+                />
               </div>
 
               {/*PoolArea */}
@@ -888,12 +1412,23 @@ const formulario = () => {
                     value="Área de la Piscina en Pies Cuadrados:"
                   />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, PoolArea: e.target.value })
+                  }
+                  name="PoolArea"
+                  className="form-control"
+                />
               </div>
 
               {/*PoolQC */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) => setState({ ...state, PoolQC: e.target.value })}
+                name="PoolQC"
+                className="form-control"
+              >
                 {PoolQCOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -903,7 +1438,11 @@ const formulario = () => {
 
               {/*Fence */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) => setState({ ...state, Fence: e.target.value })}
+                name="Fence"
+                className="form-control"
+              >
                 {FenceOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -913,7 +1452,13 @@ const formulario = () => {
 
               {/*MiscFeature */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, MiscFeature: e.target.value })
+                }
+                name="MiscFeature"
+                className="form-control"
+              >
                 {MiscFeatureOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -926,7 +1471,14 @@ const formulario = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="small" value="Valor Misceláneo en Dólares:" />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, MiscVal: e.target.value })
+                  }
+                  name="MiscVal"
+                  className="form-control"
+                />
               </div>
 
               {/*MoSold */}
@@ -934,7 +1486,14 @@ const formulario = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="small" value="Mes de Venta (MM):" />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, MoSold: e.target.value })
+                  }
+                  name="MoSold"
+                  className="form-control"
+                />
               </div>
 
               {/*YrSold */}
@@ -942,12 +1501,25 @@ const formulario = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="small" value="Año de Venta (AAAA):" />
                 </div>
-                <TextInput id="small" sizing="sm" type="text" />
+                <TextInput
+                  type="text"
+                  onChange={(e) =>
+                    setState({ ...state, YrSold: e.target.value })
+                  }
+                  name="YrSold"
+                  className="form-control"
+                />
               </div>
 
               {/*SaleType */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, SaleType: e.target.value })
+                }
+                name="SaleType"
+                className="form-control"
+              >
                 {SaleTypeOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -957,7 +1529,13 @@ const formulario = () => {
 
               {/*SaleCondition */}
               <div className="mb-2 block"></div>
-              <Select id="venta" required>
+              <Select
+                onChange={(e) =>
+                  setState({ ...state, SaleCondition: e.target.value })
+                }
+                name="SaleCondition"
+                className="form-control"
+              >
                 {SaleConditionOptions.map((zone, index) => (
                   <option key={index} value={zone.value}>
                     {zone.title}
@@ -968,27 +1546,24 @@ const formulario = () => {
 
             {/*Subir archivo */}
             <div className="max-w-md" id="fileUpload">
-              <div className="mb-2 block mt-5">
-                <Label htmlFor="file" value="Subir planos de la vivienda" />
+              <div className="mb-2 block">
+                <Label htmlFor="file" value="Subir archivo" />
               </div>
-              <FileInput helperText="" id="file" />
-              <div className="mb-10" />
+              <FileInput helperText="Subir planos de la vivienda" id="file" />
             </div>
-            <div className="ml-10 justify-center">
-              <a href="/ValorEstimado">
-                <CustomButton
-                  title="Cotizar"
-                  containerStyles="bg-violeta text-white rounded-full w-80"
-                  // CUANDO DEN CLICK AQUI DEBE JALAR LOS DATOS
-                />
-              </a>
-            </div>
+
+            {/*Boton de submit */}
+            <button
+              type="submit"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Estimar
+            </button>
           </div>
-        </Card>
+        </form>
       </div>
     </div>
-    </Flowbite>
   );
-};
+}
 
 export default formulario;
