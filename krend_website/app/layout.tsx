@@ -1,7 +1,6 @@
-import { Footer, Hero, Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
 import "./globals.css";
 import Head from "next/head";
-import Home from './Comprar/page';
 
 export const metadata = {
   title: "KREND",
