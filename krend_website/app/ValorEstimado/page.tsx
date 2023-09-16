@@ -2,9 +2,14 @@
 import Image from "next/image";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useState } from "react";
+import { HouseDetails } from "@/components";
+import { fetchHouses } from "@/utils";
 
-
-const ValorEstimado = () => {
+const ValorEstimado = (responseData) => {
+  function MuestraValor() {
+    <HouseDetails isOpen={true} closeModal={() => {}} house={responseData} />;
+  }
+  const precio = responseData.SalePrice;
   return (
     <div
       className="flex-1 padding-x flex flex-col md:flex-row"
@@ -29,22 +34,14 @@ const ValorEstimado = () => {
           <h1 className="text-6xl font-bold text-center text-blue-800 my-10">
             Resultados
           </h1>
-
           <p className="hero__text text-justify mt-4">
-            Tomando en cuenta todas las características de tu propiedad, tu casa tiene
-            un valor estimado de:
-            
+            Tomando en cuenta todas las características de tu propiedad, tu casa
+            tiene un valor estimado de:
           </p>
-
-{/* JALAR PRECIO DEL STATE DE LA API */}
-          <p className="hero__subtitle_s text-center my-5"> $XX,XXX,XXX USD</p>
+          {/* JALAR PRECIO DEL STATE DE LA API */}
+          <p className="hero__subtitle_s text-center my-5">$ 154026 usd</p>
           <div className="flex justify-center">
-          <a href="/">
-            <CustomButton
-              title="Publicarla"
-              containerStyles="bg-violeta text-white rounded-full"
-            />
-          </a>
+            
           </div>
         </div>
       </div>

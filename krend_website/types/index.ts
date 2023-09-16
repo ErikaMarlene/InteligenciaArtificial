@@ -107,18 +107,8 @@ export interface HouseProps{
   // NO USAR NÚMEROS
   // 3SsnPorch: number;
   // NO USAR NÚMEROS
-  // 1stFlrSF: number;
-  // 2ndFlrSF: number;
-}
-
-// checar 2:27:54
-export interface FilterProps {
-  pageNumber?: number;
-  manufacturer?: string;
-  year?: number;
-  model?: string;
-  limit?: number;
-  fuel?: string;
+  // FirstFlrSF: number;
+  // SecondFlrSF: number;
 }
 
 export interface PropsFiltros {
@@ -151,8 +141,4 @@ export interface CustomFilterProps {
 export interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
-}
-export interface SearchManuFacturerProps {
-  manufacturer: string;
-  setManuFacturer: (manufacturer: string) => void;
 }

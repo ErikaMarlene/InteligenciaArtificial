@@ -55,9 +55,42 @@ import {
 } from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
-import CustomButton from "@/components/CustomButton";
 
 function formulario() {
+  const [allHouses, setAllHouses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  //search states
+
+  //filter states
+  const [street, setStreet] = useState("");
+  const [mszoning, setMszoning] = useState("");
+  const [alley, setAlley] = useState("");
+  //pagination state
+  const [limit, setLimit] = useState(10);
+
+  const getHouses = async () => {
+    setLoading(true);
+    try {
+      const result = await fetchHouses({
+        street: street || "",
+        limit: limit || 10,
+        mszoning: mszoning || "",
+        alley: alley || "",
+      });
+      setAllHouses(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getHouses();
+  }, [street, limit, mszoning, alley]);
+
+  const isDataEmpty =
+    !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
 
   async function comunica() {
     // Consumiendo el servicio POST
@@ -77,6 +110,7 @@ function formulario() {
 
   const [state, setState] = useState({
     id: "",
+    MSSubClass: "",
     MSZoning: "",
     LotFrontage: "",
     LotArea: "",
@@ -246,7 +280,19 @@ function formulario() {
 
             {/*Se inicia para seleccionar opciones predefinidas
             MSZoning*/}
-
+            <div className="max-w-md">
+              <div className="mb-2 block">
+                <Label htmlFor="small" value="MSSubClass" />
+              </div>
+              <TextInput
+                type="number"
+                onChange={(e) =>
+                  setState({ ...state, MSSubClass: e.target.value })
+                }
+                name="MSSubClass"
+                className="form-control"
+              />
+            </div>
             <div className="max-w-md" id="select">
               <div className="mb-2 block">
                 <Label
@@ -277,7 +323,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, LotFrontage: e.target.value })
                   }
@@ -295,7 +341,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, LotArea: e.target.value })
                   }
@@ -533,7 +579,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, YearBuilt: e.target.value })
                   }
@@ -551,7 +597,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, YearRemodAdd: e.target.value })
                   }
@@ -649,7 +695,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, MasVnrArea: e.target.value })
                   }
@@ -779,7 +825,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BsmtFinSF1: e.target.value })
                   }
@@ -813,7 +859,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BsmtFinSF2: e.target.value })
                   }
@@ -831,7 +877,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BsmtUnfSF: e.target.value })
                   }
@@ -849,7 +895,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, TotalBsmtSF: e.target.value })
                   }
@@ -931,7 +977,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, FirstFlrSF: e.target.value })
                   }
@@ -949,7 +995,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, SecondFlrSF: e.target.value })
                   }
@@ -967,7 +1013,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, LowQualFinSF: e.target.value })
                   }
@@ -985,7 +1031,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, GrLivArea: e.target.value })
                   }
@@ -1003,7 +1049,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BsmtFullBath: e.target.value })
                   }
@@ -1018,7 +1064,7 @@ function formulario() {
                   <Label htmlFor="small" value="Medios baños en el sótano:" />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BsmtHalfBath: e.target.value })
                   }
@@ -1036,7 +1082,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, FullBath: e.target.value })
                   }
@@ -1054,7 +1100,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, HalfBath: e.target.value })
                   }
@@ -1072,7 +1118,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, BedroomAbvGr: e.target.value })
                   }
@@ -1090,7 +1136,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, KitchenAbvGr: e.target.value })
                   }
@@ -1124,7 +1170,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, TotRmsAbvGrd: e.target.value })
                   }
@@ -1155,7 +1201,7 @@ function formulario() {
                   <Label htmlFor="small" value="Número de chimeneas:" />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, Fireplaces: e.target.value })
                   }
@@ -1205,7 +1251,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, GarageYrBlt: e.target.value })
                   }
@@ -1239,7 +1285,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, GarageCars: e.target.value })
                   }
@@ -1257,7 +1303,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, GarageArea: e.target.value })
                   }
@@ -1323,7 +1369,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, WoodDeckSF: e.target.value })
                   }
@@ -1341,7 +1387,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, OpenPorchSF: e.target.value })
                   }
@@ -1359,7 +1405,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, EnclosedPorch: e.target.value })
                   }
@@ -1377,7 +1423,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, ThreeSsnPorch: e.target.value })
                   }
@@ -1395,7 +1441,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, ScreenPorch: e.target.value })
                   }
@@ -1413,7 +1459,7 @@ function formulario() {
                   />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, PoolArea: e.target.value })
                   }
@@ -1472,7 +1518,7 @@ function formulario() {
                   <Label htmlFor="small" value="Valor Misceláneo en Dólares:" />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, MiscVal: e.target.value })
                   }
@@ -1487,7 +1533,7 @@ function formulario() {
                   <Label htmlFor="small" value="Mes de Venta (MM):" />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, MoSold: e.target.value })
                   }
@@ -1502,7 +1548,7 @@ function formulario() {
                   <Label htmlFor="small" value="Año de Venta (AAAA):" />
                 </div>
                 <TextInput
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setState({ ...state, YrSold: e.target.value })
                   }
@@ -1553,12 +1599,14 @@ function formulario() {
             </div>
 
             {/*Boton de submit */}
-            <button
-              type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Estimar
-            </button>
+            <a href="/ValorEstimado">
+              <button
+                type="button"
+                className="number-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg number-sm w-full sm:w-auto px-5 py-2.5 number-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Estimar
+              </button>
+            </a>
           </div>
         </form>
       </div>
