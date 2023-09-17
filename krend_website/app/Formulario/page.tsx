@@ -59,9 +59,9 @@ import CustomButton from "@/components/CustomButton";
 import ValorEstimado from "../ValorEstimado/page";
 declare global {
   interface Window {
-    responseData: {
+    result: {
       id: number;
-      SalePrice: string; // Este se tendria que cambiar por el Sale price
+      SalePrice: string;
     };
   }
 }
@@ -76,16 +76,6 @@ function formulario() {
       },
       body: JSON.stringify(state), // Envía el objeto state completo
     });
-
-    // Imprimir lo que responde el servidor
-    const responseData = await respuesta.json();
-    console.log(responseData);
-    window.responseData = responseData;
-
-    localStorage.setItem("responseData", JSON.stringify(responseData));
-
-    console.log(typeof responseData);
-
   }
 
   const [state, setState] = useState({
@@ -180,24 +170,31 @@ function formulario() {
       localStorage.setItem("MiscVal", state.MiscVal);
     }
   });
-  const [output, setOutput] = useState('');
-
-  const runPythonScript = async () => {
+  const handleFormSubmit = async () => {
     try {
-      const response = await fetch('../Api/runPython.ts', {
-        method: 'POST',
+      const response = await fetch('http://127.0.0.1:5000/predict', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        setOutput(data.output);
-      } else {
-        console.error('Error al ejecutar el script de Python');
+  
+      if (!response.ok) {
+        throw new Error('Algo salió mal con la petición');
       }
+  
+      const result = await response.json();
+      console.log("Predicción:", result.prediction);
+  
+      localStorage.setItem("result", JSON.stringify(result.prediction));
+      console.log("Redirigiendo a /ValorEstimado");
+      window.location.href = "/ValorEstimado";
     } catch (error) {
-      console.error('Error de red:', error);
+      console.error("Error al hacer la predicción:", error);
     }
   };
+  
   return (
     <div style={{ position: "relative", zIndex: 1 }}>
       {/* Imagen de fondo */}
@@ -210,11 +207,11 @@ function formulario() {
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           minHeight: "100vh",
-          position: "absolute", // Establecer la posición absoluta
-          top: 0, // Anclar arriba
-          left: 0, // Anclar a la izquierda
-          right: 0, // Anclar a la derecha
-          bottom: 0, // Anclar abajo
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           filter: "blur(0px)",
         }}
       ></div>
@@ -229,7 +226,7 @@ function formulario() {
         }}
       >
         <h1 className="hero__title text-left">
-          Valua tu casa de forma rápida y sencilla!
+          ¡Valua tu casa de forma rápida y sencilla!
         </h1>
 
         <p className="hero__subtitle">
@@ -241,7 +238,8 @@ function formulario() {
           className="card-body"
           onSubmit={(e) => {
             e.preventDefault();
-            comunica(); // Llama a la función comunica cuando se envía el formulario
+            comunica();
+            handleFormSubmit();
           }}
         >
           <div className="mt-8">
@@ -274,7 +272,7 @@ function formulario() {
             MSZoning*/}
 
             {/*MSSubClass*/}
-            <div>
+            <div className="flex max-w-md flex-col gap-4">
               <div className="mb-2 block">
                 <Label
                   htmlFor="small"
@@ -1602,13 +1600,11 @@ function formulario() {
               <CustomButton
                 title="Estimar"
                 containerStyles="bg-violeta text-white rounded-full w-80"
-                handleClick={async() => {
-                  await runPythonScript();
-                  window.location.href = "/ValorEstimado";
+                handleClick={async () => {
+                  await handleFormSubmit();
                 }}
                 btnType="submit"
               />
-              {output && <div>Salida de Python: {output}</div>}
             </div>
           </div>
         </form>

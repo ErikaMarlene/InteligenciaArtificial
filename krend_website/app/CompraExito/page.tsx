@@ -31,11 +31,9 @@ const CompraExito = () => {
           </h1>
 
           <p className="hero__text text-justify mt-4">
-            ¡KREND te felicita! Tu compra se ha realizado de manera exitosa. Tu nuevo hogar te espera y se encuentra en: 
+            ¡KREND te felicita! Tu compra se ha realizado de manera exitosa. ¡Tu nuevo hogar te espera! 
           </p>
 
-{/* JALAR PRECIO DEL STATE DE LA API */}
-          <p className="hero__subtitle_s text-center my-5"> DIRECCIÓN</p>
           <div className="flex justify-center">
           <a href="/">
             <CustomButton
