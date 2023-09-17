@@ -577,7 +577,7 @@ export const PavedDriveOptions = [
 
 export const PoolQCOptions = [
   {
-    title: "Entrada Pavimentada",
+    title: "Condiciones de la alberca",
     value: "?"
   },
   { title: "Excellent", value: "=Ex" },

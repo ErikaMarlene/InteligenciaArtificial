@@ -2,16 +2,31 @@
 import { useEffect, useState } from "react";
 
 function ValorEstimado() {
-  const [responseData, setResponseData] = useState<{
-    SalePrice: number;
-  } | null>(null);
+  const [salePrice, setSalePrice] = useState<string | null>(null);
 
   useEffect(() => {
     // Recuperar responseData de localStorage
-    const responseDataFromLocalStorage = localStorage.getItem("responseData");
+    const responseDataFromLocalStorage = localStorage.getItem("result");
+
     if (responseDataFromLocalStorage) {
-      const parsedResponseData = JSON.parse(responseDataFromLocalStorage);
-      setResponseData(parsedResponseData);
+      // Buscar la posición de "SalePrice" en la cadena
+      const startIndex = responseDataFromLocalStorage.indexOf("SalePrice");
+
+      if (startIndex !== -1) {
+        // Obtener la parte de la cadena después de "SalePrice"
+        const salePriceSubstring = responseDataFromLocalStorage.substring(
+          startIndex + 2 + "SalePrice".length + 1
+        );
+        const commaIndex = salePriceSubstring.indexOf(",");
+        const salePriceValue =
+          commaIndex !== -1
+            ? salePriceSubstring.substring(0, commaIndex)
+            : salePriceSubstring;
+        // Actualizar el estado con el valor encontrado
+        setSalePrice(salePriceValue);
+      } else {
+        console.error("No se encontró 'SalePrice' en la cadena.");
+      }
     } else {
       console.error("responseData no está en localStorage");
     }
@@ -22,16 +37,13 @@ function ValorEstimado() {
       <div className="content-container">
         <div className="text-container">
           <h1 className="results-heading">Resultados</h1>
-          {responseData ? (
+          {salePrice ? (
             <p className="sale-condition">
               <span className="result-text">
                 Tomando en cuenta todas las características de tu propiedad, tu
-                casa tiene un valor estimado de:
+                casa tiene un valor estimado de:<br></br>
               </span>{" "}
-              <span className="price-condition">
-                ${responseData.SalePrice}
-                usd
-              </span>
+              <span className="price-condition">${salePrice} USD</span>
             </p>
           ) : (
             <p>Esperando datos de respuesta...</p>
@@ -42,10 +54,6 @@ function ValorEstimado() {
           alt="Imagen Izquierda"
           className="image-left"
         />
-        {/* Agrega el console.log aquí */}
-        {responseData && (
-          <script>{`console.log(${responseData.SalePrice});`}</script>
-        )}
       </div>
 
       <style jsx>{`
