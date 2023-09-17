@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React, { Component, ChangeEvent, FormEvent } from "react";
-
+import React, { Component, ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from "next/router";
 import { Label, Select } from "flowbite-react";
 import { FileInput, TextInput } from "flowbite-react";
 
@@ -54,47 +54,21 @@ import {
   SaleConditionOptions,
 } from "@/constants";
 import { fetchHouses } from "@/utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import CustomButton from "@/components/CustomButton";
+import ValorEstimado from "../ValorEstimado/page";
+declare global {
+  interface Window {
+    responseData: {
+      id: number;
+      SalePrice: string; // Este se tendria que cambiar por el Sale price
+    };
+  }
+}
 
 function formulario() {
-  const [allHouses, setAllHouses] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  //search states
-
-  //filter states
-  const [street, setStreet] = useState("");
-  const [mszoning, setMszoning] = useState("");
-  const [alley, setAlley] = useState("");
-  //pagination state
-  const [limit, setLimit] = useState(10);
-
-  const getHouses = async () => {
-    setLoading(true);
-    try {
-      const result = await fetchHouses({
-        street: street || "",
-        limit: limit || 10,
-        mszoning: mszoning || "",
-        alley: alley || "",
-      });
-      setAllHouses(result);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    getHouses();
-  }, [street, limit, mszoning, alley]);
-
-  const isDataEmpty =
-    !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
-
   async function comunica() {
     // Consumiendo el servicio POST
-
     const respuesta = await fetch("http://localhost:8081/casas", {
       method: "POST",
       headers: {
@@ -106,11 +80,16 @@ function formulario() {
     // Imprimir lo que responde el servidor
     const responseData = await respuesta.json();
     console.log(responseData);
+    window.responseData = responseData;
+
+    localStorage.setItem("responseData", JSON.stringify(responseData));
+
+    console.log(typeof responseData);
+
   }
 
   const [state, setState] = useState({
     id: "",
-    MSSubClass: "",
     MSZoning: "",
     LotFrontage: "",
     LotArea: "",
@@ -190,8 +169,6 @@ function formulario() {
     SaleType: "",
     SaleCondition: "",
     SalePrice: "",
-    //saleConditionValue: "", // Cambia el nombre de la propiedad en el estado
-    //MiscVal: ""
   });
   useEffect(() => {
     localStorage.setItem("MiscVal", "");
@@ -201,11 +178,26 @@ function formulario() {
   useEffect(() => {
     if (state.MiscVal !== "") {
       localStorage.setItem("MiscVal", state.MiscVal);
-      console.log(localStorage.getItem("saleCondition"));
-      console.log(localStorage.getItem("MiscVal"));
     }
   });
+  const [output, setOutput] = useState('');
 
+  const runPythonScript = async () => {
+    try {
+      const response = await fetch('../Api/runPython.ts', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setOutput(data.output);
+      } else {
+        console.error('Error al ejecutar el script de Python');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
+  };
   return (
     <div style={{ position: "relative", zIndex: 1 }}>
       {/* Imagen de fondo */}
@@ -228,7 +220,7 @@ function formulario() {
       ></div>
 
       <div
-        className="flex-1 pt-36 padding-x"
+        className="flex-1 pt-28 pb-1 padding-x"
         style={{
           position: "relative",
           zIndex: 1,
@@ -236,7 +228,7 @@ function formulario() {
           maxWidth: "800px",
         }}
       >
-        <h1 className="hero__title">
+        <h1 className="hero__title text-left">
           Valua tu casa de forma rápida y sencilla!
         </h1>
 
@@ -280,19 +272,25 @@ function formulario() {
 
             {/*Se inicia para seleccionar opciones predefinidas
             MSZoning*/}
-            <div className="max-w-md">
+
+            {/*MSSubClass*/}
+            <div>
               <div className="mb-2 block">
-                <Label htmlFor="small" value="MSSubClass" />
+                <Label
+                  htmlFor="small"
+                  value="Indica el tamaño de vivienda según corresponda del 20-190:"
+                />
               </div>
               <TextInput
                 type="number"
                 onChange={(e) =>
-                  setState({ ...state, MSSubClass: e.target.value })
+                  setState({ ...state, LotArea: e.target.value })
                 }
                 name="MSSubClass"
                 className="form-control"
               />
             </div>
+
             <div className="max-w-md" id="select">
               <div className="mb-2 block">
                 <Label
@@ -1599,14 +1597,19 @@ function formulario() {
             </div>
 
             {/*Boton de submit */}
-            <a href="/ValorEstimado">
-              <button
-                type="button"
-                className="number-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg number-sm w-full sm:w-auto px-5 py-2.5 number-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Estimar
-              </button>
-            </a>
+
+            <div className="ml-10 mb-5 justify-center">
+              <CustomButton
+                title="Estimar"
+                containerStyles="bg-violeta text-white rounded-full w-80"
+                handleClick={async() => {
+                  await runPythonScript();
+                  window.location.href = "/ValorEstimado";
+                }}
+                btnType="submit"
+              />
+              {output && <div>Salida de Python: {output}</div>}
+            </div>
           </div>
         </form>
       </div>

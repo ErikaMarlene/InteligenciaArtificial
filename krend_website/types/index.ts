@@ -10,21 +10,6 @@ export interface CustomButtonProps {
   isDisabled?: boolean;
 }
 
-// CAMBIAR
-export interface CarProps {
-  city_mpg: number;
-  class: string;
-  combination_mpg: number;
-  cylinders: number;
-  displacement: number;
-  drive: string;
-  fuel_type: string;
-  highway_mpg: number;
-  make: string;
-  model: string;
-  transmission: string;
-  year: number;
-}
 
 export interface HouseProps{
   MSSubClass: number;
@@ -104,11 +89,9 @@ export interface HouseProps{
   SaleType: string;
   SaleCondition: string;
   SalePrice: number;
-  // NO USAR NÚMEROS
-  // 3SsnPorch: number;
-  // NO USAR NÚMEROS
-  // FirstFlrSF: number;
-  // SecondFlrSF: number;
+  ThreeSsnPorch: number;
+  FirstFlrSF: number;
+  SecondFlrSF: number;
 }
 
 export interface PropsFiltros {
@@ -123,9 +106,6 @@ export interface PropsFiltros {
   overallCondOptions?: string;
   saleConditionOptions?: string;
   bedroomAbvGr?: string;
-}
-export interface HomeProps {
-  searchParams: FilterProps;
 }
 
 export interface OptionProps{
