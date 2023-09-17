@@ -1,7 +1,6 @@
-import { Footer, Hero, Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
 import "./globals.css";
 import Head from "next/head";
-import Home from './Comprar/page';
 
 export const metadata = {
   title: "KREND",
@@ -16,8 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="../publica/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="../publica/favicon.ico" type="image/x-icon" />
       </Head>
       <body className="relative">
         <Navbar />

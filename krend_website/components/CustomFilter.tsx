@@ -18,7 +18,7 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
           setFilter(e.value);
         }}
       >
-        <div className="relative w-fit z-10">
+        <div className="relative w-fit">
           <Listbox.Button className="custom-filter__btn">
             <span className="block truncate">{selected.title}</span>
             <Image
@@ -38,6 +38,7 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
             <Listbox.Options style={{
                 width: "max-content",
                 minWidth: "100%",
+                zIndex: 1000,
               }} className="custom-filter__options">
               {options.map((option) => (
                 <Listbox.Option

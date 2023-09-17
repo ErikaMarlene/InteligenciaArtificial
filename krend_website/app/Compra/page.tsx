@@ -6,7 +6,17 @@ import {
   ShowMore,
   LoadingSpinner,
 } from "@/components";
-import { Street, MSZoning, Alley } from "@/constants";
+import {
+  Street,
+  MSZoning,
+  Alley,
+  Precio,
+  LotShapeOptions,
+  HouseStyleOptions,
+  OverallCondOptions,
+  SaleConditionOptions,
+  BedroomAbvGr,
+} from "@/constants";
 import { fetchHouses } from "@/utils";
 import { useEffect, useState } from "react";
 
@@ -15,12 +25,16 @@ export default function Home() {
   const [allHouses, setAllHouses] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  //search states
-
   //filter states
   const [street, setStreet] = useState("");
   const [mszoning, setMszoning] = useState("");
   const [alley, setAlley] = useState("");
+  const [precio, setPrecio] = useState("");
+  const [lotShapeOptions, setLotShapeOptions] = useState("");
+  const [houseStyleOptions, setHouseStyleOptions] = useState("");
+  const [overallCondOptions, setOverallCondOptions] = useState("");
+  const [saleConditionOptions, setSaleConditionOptions] = useState("");
+  const [bedroomAbvGr, setBedroomAbvGr] = useState("");
   //pagination state
   const [limit, setLimit] = useState(10);
 
@@ -28,10 +42,16 @@ export default function Home() {
     setLoading(true);
     try {
       const result = await fetchHouses({
-        street: street || "",
+        street: street || "?",
         limit: limit || 10,
-        mszoning: mszoning || "",
-        alley: alley || "",
+        mszoning: mszoning || "?",
+        alley: alley || "?",
+        precio: precio || "desc",
+        lotShapeOptions: lotShapeOptions || "?",
+        houseStyleOptions: houseStyleOptions || "?",
+        overallCondOptions: overallCondOptions || "?",
+        saleConditionOptions: saleConditionOptions || "?",
+        bedroomAbvGr: bedroomAbvGr || "?",
       });
       setAllHouses(result);
     } catch (error) {
@@ -42,7 +62,18 @@ export default function Home() {
   };
   useEffect(() => {
     getHouses();
-  }, [street, limit, mszoning, alley]);
+  }, [
+    street,
+    limit,
+    mszoning,
+    alley,
+    precio,
+    lotShapeOptions,
+    houseStyleOptions,
+    overallCondOptions,
+    saleConditionOptions,
+    bedroomAbvGr,
+  ]);
 
   const isDataEmpty =
     !Array.isArray(allHouses) || allHouses.length < 1 || !allHouses;
@@ -56,13 +87,18 @@ export default function Home() {
             Explora las casas que pueden ser de tu interés.
           </p>
         </div>
-
         <div className="home__filters">
-          {/* <SearchBar setManufacturer={setManufacturer} setModel={setModel} /> */}
-
-          <div className="home__filter-container">
+        <div className="home__filter-container">
             <p className="text-xl font-semibold">Ordenar por:</p>
-            {/* CAMBIAR TITLE */}
+            <CustomFilter
+              title="Precio"
+              options={Precio}
+              setFilter={setPrecio}
+            />
+          </div>
+          <div className="home__filter-container">
+            <p className="text-xl font-semibold">Filtrar por:</p>
+
             <CustomFilter
               title="MSZoning"
               options={MSZoning}
@@ -73,13 +109,37 @@ export default function Home() {
               options={Street}
               setFilter={setStreet}
             />
-                        <CustomFilter
-              title="Alley"
-              options={Alley}
-              setFilter={setAlley}
+            <CustomFilter title="Alley" options={Alley} setFilter={setAlley} />
+            <CustomFilter
+              title="LotShapeOptions"
+              options={LotShapeOptions}
+              setFilter={setLotShapeOptions}
+            />
+            <CustomFilter
+              title="HouseStyleOptions"
+              options={HouseStyleOptions}
+              setFilter={setHouseStyleOptions}
+            />
+            <CustomFilter
+              title="OverallCondOptions"
+              options={OverallCondOptions}
+              setFilter={setOverallCondOptions}
+            />
+            <CustomFilter
+              title="SaleConditionOptions"
+              options={SaleConditionOptions}
+              setFilter={setSaleConditionOptions}
+            />
+            <CustomFilter
+              title="BedroomAbvGr"
+              options={BedroomAbvGr}
+              setFilter={setBedroomAbvGr}
             />
           </div>
+
+          
         </div>
+
         {loading ? (
           <div className="mt-16 w-full flex-center">
             <LoadingSpinner />

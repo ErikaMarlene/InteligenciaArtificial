@@ -3,6 +3,7 @@ import { HouseProps } from "@/types";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { CustomButton } from ".";
 
 interface HouseDetailsProps {
   isOpen: boolean;
@@ -19,7 +20,7 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
-            enterTo="opacity-100"   
+            enterTo="opacity-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
@@ -66,15 +67,29 @@ const HouseDetails = ({ isOpen, closeModal, house }: HouseDetailsProps) => {
                   {/* DESCRIBCIÓN DE LA CASA */}
                   <div className="flex-1 flex flex-col gap-2">
                     <h2 className="font-semibold text-xl capitalize">
-                        {house.Neighborhood} {house.LotArea} ft&sup2;
+                      {house.Neighborhood} {house.LotArea} ft&sup2;
                     </h2>
+                    <a href="/CompraExito">                      
+                    <CustomButton
+                      title="Comprar"
+                      containerStyles="bg-violeta text-white rounded-full w-full"
+
+                    />
+                    </a>
                     <div className="mt-3 flex flex-wrap gap-4">
-                        {Object.entries(house).map(([key, value]) => (
-                            <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                                <h4 className="text-grey capitalize">{key.split("_").join(" ")}</h4>
-                                <p className="text-black-100 font-semibold">{value}</p>
-                            </div>
-                        ))}
+                      {Object.entries(house).map(([key, value]) => (
+                        <div
+                          className="flex justify-between gap-5 w-full text-right"
+                          key={key}
+                        >
+                          <h4 className="text-grey capitalize">
+                            {key.split("_").join(" ")}
+                          </h4>
+                          <p className="text-black-100 font-semibold">
+                            {value}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </Dialog.Panel>

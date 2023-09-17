@@ -10,21 +10,6 @@ export interface CustomButtonProps {
   isDisabled?: boolean;
 }
 
-// CAMBIAR
-export interface CarProps {
-  city_mpg: number;
-  class: string;
-  combination_mpg: number;
-  cylinders: number;
-  displacement: number;
-  drive: string;
-  fuel_type: string;
-  highway_mpg: number;
-  make: string;
-  model: string;
-  transmission: string;
-  year: number;
-}
 
 export interface HouseProps{
   MSSubClass: number;
@@ -69,9 +54,6 @@ export interface HouseProps{
   HeatingQC: string;
   CentralAir: string;
   Electrical: string;
-  // NO USAR NÚMEROS
-  // 1stFlrSF: number;
-  // 2ndFlrSF: number;
   LowQualFinSF: number;
   GrLivArea: number;
   BsmtFullBath: number;
@@ -96,8 +78,6 @@ export interface HouseProps{
   WoodDeckSF: number;
   OpenPorchSF: number;
   EnclosedPorch: number;
-  // NO USAR NÚMEROS
-  // 3SsnPorch: number;
   ScreenPorch: number;
   PoolArea: number;
   PoolQC: string;
@@ -109,16 +89,9 @@ export interface HouseProps{
   SaleType: string;
   SaleCondition: string;
   SalePrice: number;
-}
-
-// checar 2:27:54
-export interface FilterProps {
-  pageNumber?: number;
-  manufacturer?: string;
-  year?: number;
-  model?: string;
-  limit?: number;
-  fuel?: string;
+  ThreeSsnPorch: number;
+  FirstFlrSF: number;
+  SecondFlrSF: number;
 }
 
 export interface PropsFiltros {
@@ -127,9 +100,12 @@ export interface PropsFiltros {
   limit?: number;
   mszoning?: string;
   alley?: string;
-}
-export interface HomeProps {
-  searchParams: FilterProps;
+  precio?: string;
+  lotShapeOptions?: string;
+  houseStyleOptions?: string;
+  overallCondOptions?: string;
+  saleConditionOptions?: string;
+  bedroomAbvGr?: string;
 }
 
 export interface OptionProps{
@@ -145,8 +121,4 @@ export interface CustomFilterProps {
 export interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
-}
-export interface SearchManuFacturerProps {
-  manufacturer: string;
-  setManuFacturer: (manufacturer: string) => void;
 }
